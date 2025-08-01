@@ -9,18 +9,18 @@ N 420 -90 530 -90 {lab=Out}
 N 530 -90 530 -30 {lab=Out}
 N 530 -90 600 -90 {lab=Out}
 N 600 -140 600 -90 {lab=Out}
-N 420 -240 420 -200 {lab=xxx}
-N 420 -240 520 -240 {lab=xxx}
-N 600 -240 600 -200 {lab=xxx}
-N 520 -240 600 -240 {lab=xxx}
+N 420 -240 420 -200 {lab=VDD}
+N 420 -240 520 -240 {lab=VDD}
+N 600 -240 600 -200 {lab=VDD}
+N 520 -240 600 -240 {lab=VDD}
 N 530 30 530 60 {lab=#net1}
 N 530 120 530 160 {lab=xxx}
 N 530 90 530 120 {lab=xxx}
 N 530 -0 640 0 {lab=xxx}
 N 640 0 640 120 {lab=xxx}
 N 530 120 640 120 {lab=xxx}
-N 420 -200 420 -170 {lab=xxx}
-N 600 -200 600 -170 {lab=xxx}
+N 420 -200 420 -170 {lab=VDD}
+N 600 -200 600 -170 {lab=VDD}
 N 260 -120 380 -120 {lab=A}
 N 380 -170 380 -120 {lab=A}
 N 260 -80 550 -80 {lab=B}
@@ -93,5 +93,5 @@ model=nfet_03v3
 spiceprefix=X
 }
 C {devices/ipin.sym} 260 -80 0 0 {name=p3 lab=B}
-C {devices/iopin.sym} 520 -240 3 0 {name=p4 lab=xxx}
-C {devices/iopin.sym} 530 150 1 0 {name=p5 lab=xxx}
+C {devices/iopin.sym} 520 -240 3 0 {name=p4 lab=VDD}
+C {devices/iopin.sym} 530 150 1 0 {name=p5 lab=GND}
