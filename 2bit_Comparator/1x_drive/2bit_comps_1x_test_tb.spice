@@ -1,0 +1,121 @@
+* NGSPICE Testbench for 2-bit Comparator (Single Plot Output)
+
+********************************************************************************
+* 1. INCLUDE PDK MODEL FILE
+********************************************************************************
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+
+********************************************************************************
+* 2. POWER SUPPLY
+********************************************************************************
+Vdd vdd 0 1.8V
+
+********************************************************************************
+* 3. INPUT STIMULI
+********************************************************************************
+* Sinyal input ini akan menghasilkan semua 16 kombinasi dari 0ns hingga 160ns.
+* A = {A1, A0}, B = {B1, B0}
+* Rise/Fall time = 100ps
+* A0: Periode 10ns (bit paling cepat berubah)
+* A1: Periode 20ns
+* B0: Periode 40ns
+* B1: Periode 80ns (bit paling lambat berubah)
+
+VA0 A0 0 PULSE(0 1.8 0 100p 100p 4.9n 10n)
+VA1 A1 0 PULSE(0 1.8 0 100p 100p 9.9n 20n)
+VB0 B0 0 PULSE(0 1.8 0 100p 100p 19.9n 40n)
+VB1 B1 0 PULSE(0 1.8 0 100p 100p 39.9n 80n)
+
+********************************************************************************
+* 4. INSTANTIATE THE DEVICE UNDER TEST (DUT)
+********************************************************************************
+* Urutan pin sub-sirkuit: .subckt 2bit_comps_1x B(A<B) VDD A(A>B) B1 B0 EQUAL A1 A0 GND
+* Node output: A_gt_B (A > B), A_lt_B (A < B), A_eq_B (A = B)
+Xdut A_lt_B vdd A_gt_B B1 B0 A_eq_B A1 A0 0 2bit_comps_1x
+
+********************************************************************************
+* 5. SUBCIRCUIT DEFINITIONS
+********************************************************************************
+.subckt 2bit_comps_1x B VDD A B1 B0 EQUAL A1 A0 GND
+    x1 VDD B1 net1 A1 GND my_nxor
+    x2 VDD B0 net2 A0 GND my_xor
+    x3 VDD B0 net2 net3 GND my_nand
+    x4 VDD net1 net3 net5 GND my_nand
+    x5 VDD net4 B net5 GND my_xor
+    x6 VDD B1 net1 net4 GND my_nor
+    x7 VDD net5 net2 EQUAL GND my_nor
+    x8 VDD B EQUAL A GND my_nor
+.ends
+
+.subckt my_nxor VDD A Out B GND
+    XM2  net1 A   VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM4  Out  A   net4 GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM1  Out  B   net1 VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM3  net2 net5 VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM5  Out  net6 net2 VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM6  net4 net6 GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM7  Out  net5 net3 GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM8  net3 B   GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM9  net5 A   VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM10 net6 B   VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM11 net5 A   GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM12 net6 B   GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+.ends
+
+.subckt my_xor VDD A Out B GND
+    XM2  net1 A    VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM4  Out  A    net4 GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM1  Out  net6 net1 VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM3  net2 net5 VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM5  Out  B    net2 VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM6  net4 B    GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM7  Out  net5 net3 GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM8  net3 net6 GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM9  net5 A    VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM10 net6 B    VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM11 net5 A    GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM12 net6 B    GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+.ends
+
+.subckt my_nand VDD A B Out GND
+    XM1 Out A net1 GND nfet_03v3 L=0.3u W=0.85u nf=2 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM2 Out A VDD  VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM3 Out B VDD  VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM4 net1 B GND GND nfet_03v3 L=0.3u W=0.85u nf=2 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+.ends
+
+.subckt my_nor VDD A B Out GND
+    XM2 net1 A VDD  VDD pfet_03v3 L=0.3u W=1.7u nf=2 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM1 Out  B net1 VDD pfet_03v3 L=0.3u W=1.7u nf=2 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM3 Out  A GND  GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+    XM4 Out  B GND  GND nfet_03v3 L=0.3u W=0.85u nf=1 ad=((nf+1)/2) * W/nf * 0.18u as=((nf+2)/2) * W/nf * 0.18u pd=2*((nf+1)/2) * (W/nf + 0.18u) ps=2*((nf+2)/2) * (W/nf + 0.18u) nrd=0.18u / W nrs=0.18u / W sa=0 sb=0 sd=0 m=1
+.ends
+
+********************************************************************************
+* 6. ANALYSIS & SIMULATION CONTROL
+********************************************************************************
+.tran 1n 160n
+
+.control
+    run
+    set answidth=120
+
+    * Plot semua sinyal dalam satu grafik dengan offset vertikal untuk keterbacaan.
+    * Sinyal input (B1, B0, A1, A0) ditempatkan di atas.
+    * Sinyal output (A_gt_B, A_lt_B, A_eq_B) ditempatkan di bawah.
+    plot \
+        v(B1) + 12       'B1' \
+        v(B0) + 9        'B0' \
+        v(A1) + 6        'A1' \
+        v(A0) + 3        'A0' \
+        v(A_gt_B)        'A>B' \
+        v(A_lt_B) - 3    'A<B' \
+        v(A_eq_B) - 6    'A=B' \
+        title '2-bit Comparator Waveforms' ylimit -7 15
+.endc
+
+********************************************************************************
+* 7. END OF NETLIST
+********************************************************************************
+.end
