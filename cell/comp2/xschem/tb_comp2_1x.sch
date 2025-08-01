@@ -20,9 +20,9 @@ C {gnd.sym} -70 -10 0 0 {name=l3 lab=GND}
 C {vsource.sym} -70 -140 0 0 {name=V3 value="PWL(0 0 \{10n-10p\} 0 \{10n+10p\} 1.8 \{20n-10p\} 1.8 \{20n+10p\} 0 \{30n-10p\} 0 \{30n+10p\} 1.8 40n 1.8)" savecurrent=false}
 C {lab_pin.sym} -70 -170 0 0 {name=p4 sig_type=std_logic lab=B_F}
 C {gnd.sym} -70 -110 0 0 {name=l4 lab=GND}
-C {lab_pin.sym} -200 -300 0 0 {name=p5 sig_type=std_logic lab=B}
-C {lab_pin.sym} -200 -330 0 0 {name=p6 sig_type=std_logic lab=A}
-C {title.sym} -220 150 0 0 {name=l5 author="Kean Malik Aji Santoso"}
+C {lab_pin.sym} -200 -300 0 0 {name=p5 sig_type=std_logic lab=B_F}
+C {lab_pin.sym} -200 -330 0 0 {name=p6 sig_type=std_logic lab=A_F}
+C {title.sym} -220 150 0 0 {name=l5 author="Symbelleuit"}
 C {lab_pin.sym} -100 -340 2 0 {name=p7 sig_type=std_logic lab=L}
 C {lab_pin.sym} -100 -320 2 0 {name=p8 sig_type=std_logic lab=E}
 C {lab_pin.sym} -100 -300 2 0 {name=p9 sig_type=std_logic lab=G}
