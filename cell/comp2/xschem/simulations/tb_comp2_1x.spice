@@ -1,0 +1,97 @@
+** sch_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cell/comp2/xschem/tb_comp2_1x.sch
+**.subckt tb_comp2_1x
+x1 VDD L A E G B GND comp2_1x
+**** begin user architecture code
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+
+
+* Define parameters
+.param vdd = 3.3V
+.param slew_in = 10p
+.param cload = 1f
+
+* Stimuli
+VVDD VDD gnd DC {vdd}
+* V_A A gnd PULSE(0 {vdd} 2n {slew_in} {slew_in} 4n 8n)
+* V_B B gnd PULSE(0 {vdd} 1n {slew_in} {slew_in} 2n 4n)
+V_A A gnd PWL(0 0 {10n-10p} 0 {10n+10p} 3.3 {20n-10p} 3.3 {20n+10p} 0 {30n-10p} 0 {30n+10p} 3.3 40n 3.3)
+V_B B gnd PWL(0 0 {20n-10p} 0 {20n+10p} 3.3 40n 3.3)
+
+* Load capacitance
+CLL L gnd {cload}
+CLE E gnd {cload}
+CLG G gnd {cload}
+
+* Simulation control
+.tran 1p 10n
+.control
+run
+save all
+let vh = {vdd} / 2
+let v_10 = {vdd} * 0.1
+let v_90 = {vdd} * 0.9
+plot G E+4 L+8 B+12 A+16
+.endc
+.GLOBAL gnd
+.end
+
+
+
+* Stimuli
+* VPOWER VDD gnd DC 3.3
+* V_A A gnd PWL(0 0 {10n-10p} 0 {10n+10p} 3.3 {20n-10p} 3.3 {20n+10p} 0 {30n-10p} 0 {30n+10p} 3.3 40n 3.3)
+* V_B B gnd PWL(0 0 {20n-10p} 0 {20n+10p} 3.3 40n 3.3)
+
+* Simulation
+* .tran 1p 40n
+* .control
+* run
+* save all
+* plot G E+4 L+8 B+12 A+16
+* .endc
+* .GLOBAL gnd
+* .end
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  comp2_1x.sym # of pins=7
+** sym_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cell/comp2/xschem/comp2_1x.sym
+** sch_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cell/comp2/xschem/comp2_1x.sch
+.subckt comp2_1x VDD L A E G B GND
+*.opin L
+*.opin G
+*.opin E
+*.ipin A
+*.ipin B
+*.ipin VDD
+*.ipin GND
+*  M17 -  pfet_03v3  IS MISSING !!!!
+*  M18 -  pfet_03v3  IS MISSING !!!!
+*  M19 -  pfet_03v3  IS MISSING !!!!
+*  M20 -  pfet_03v3  IS MISSING !!!!
+*  M21 -  nfet_03v3  IS MISSING !!!!
+*  M22 -  nfet_03v3  IS MISSING !!!!
+*  M23 -  nfet_03v3  IS MISSING !!!!
+*  M24 -  nfet_03v3  IS MISSING !!!!
+*  M1 -  nfet_03v3  IS MISSING !!!!
+*  M2 -  pfet_03v3  IS MISSING !!!!
+*  M3 -  nfet_03v3  IS MISSING !!!!
+*  M4 -  pfet_03v3  IS MISSING !!!!
+*  M5 -  nfet_03v3  IS MISSING !!!!
+*  M6 -  nfet_03v3  IS MISSING !!!!
+*  M7 -  pfet_03v3  IS MISSING !!!!
+*  M8 -  pfet_03v3  IS MISSING !!!!
+*  M9 -  nfet_03v3  IS MISSING !!!!
+*  M10 -  pfet_03v3  IS MISSING !!!!
+*  M11 -  nfet_03v3  IS MISSING !!!!
+*  M12 -  nfet_03v3  IS MISSING !!!!
+*  M13 -  pfet_03v3  IS MISSING !!!!
+*  M14 -  pfet_03v3  IS MISSING !!!!
+*  M15 -  nfet_03v3  IS MISSING !!!!
+*  M16 -  pfet_03v3  IS MISSING !!!!
+.ends
+
+.end
