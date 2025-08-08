@@ -1,0 +1,40 @@
+settings:
+    lib_name:        analysis_comp2
+    results_dir:     lib
+    omit_on_failure: true
+    named_nodes:
+        vss:
+            name:    VSS
+            voltage: 0
+    units:
+        # Specify all units for clarity, even though only resistance differs from the default
+        time:               ns
+        voltage:            V
+        current:            uA
+        pulling_resistance: kOhm
+        leakage_power:      nW
+        capacitive_load:    pF
+        energy:             fJ
+    cell_defaults:
+        models:
+            - /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+            - /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+        slews: [0.01]
+        loads: [0.001]
+cells:
+    comp2_1x:
+        netlist: simulation/comp2_1x.sch/comp2_1x.spice
+        inputs: [A, B]
+        outputs: [L, E, G]
+        functions:
+            - L=(!A)&B
+            - E=!(A^B)
+            - G=A&(!B)
+    comp2_2x:
+        netlist: simulation/comp2_2x.sch/comp2_2x.spice
+        inputs: [A, B]
+        outputs: [L, E, G]
+        functions:
+            - L=(!A)&B
+            - E=!(A^B)
+            - G=A&(!B)

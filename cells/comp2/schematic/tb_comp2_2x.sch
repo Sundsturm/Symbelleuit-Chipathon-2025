@@ -5,7 +5,7 @@ V {}
 S {}
 F {}
 E {}
-C {comp2_2x.sym} 220 -250 0 0 {name=x1}
+C {comp2_2x.sym} 220 -190 0 0 {name=x1}
 C {code_shown.sym} -180 120 0 0 {name=MODELS only_toplevel=false value=".include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical"}
 C {title.sym} -20 200 0 0 {name=l1 author="Symbelleuit"}

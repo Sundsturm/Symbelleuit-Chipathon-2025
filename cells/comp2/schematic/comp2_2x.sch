@@ -452,6 +452,6 @@ C {lab_pin.sym} 350 -360 0 0 {name=p23 sig_type=std_logic lab=A}
 C {ipin.sym} 60 -550 1 0 {name=p24 lab=VDD}
 C {lab_pin.sym} 230 -440 2 0 {name=p25 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} 0 -300 2 0 {name=p26 sig_type=std_logic lab=VDD}
-C {ipin.sym} 0 -80 3 0 {name=p27 lab=GND}
+C {ipin.sym} 0 -80 3 0 {name=p27 lab=VSS}
 C {lab_pin.sym} -30 -330 2 0 {name=p28 sig_type=std_logic lab=GND}
 C {title.sym} -500 20 0 0 {name=l1 author="Symbelleuit"}

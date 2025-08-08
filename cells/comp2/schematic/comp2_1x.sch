@@ -465,5 +465,5 @@ C {lab_pin.sym} 730 -400 0 0 {name=p23 sig_type=std_logic lab=A}
 C {ipin.sym} 440 -590 1 0 {name=p24 lab=VDD}
 C {lab_pin.sym} 610 -480 2 0 {name=p25 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} 380 -340 2 0 {name=p26 sig_type=std_logic lab=VDD}
-C {ipin.sym} 380 -120 3 0 {name=p27 lab=GND}
+C {ipin.sym} 380 -120 3 0 {name=p27 lab=VSS}
 C {lab_pin.sym} 350 -370 2 0 {name=p28 sig_type=std_logic lab=GND}
