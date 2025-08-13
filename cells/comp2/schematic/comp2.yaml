@@ -1,8 +1,11 @@
 settings:
     lib_name:        analysis_comp2
     results_dir:     lib
-    omit_on_failure: true
+    omit_on_failure: True
     named_nodes:
+        vdd:
+            name:    VDD
+            voltage: 3.3
         vss:
             name:    VSS
             voltage: 0

@@ -49,7 +49,7 @@ VVDD VDD gnd DC \{vdd\}
 
 * Change stimuli here!
 VA A gnd PULSE(\{vdd\} 0 1n \{slew_in\} \{slew_in\} 2n 4n)
-VB B gnd DC \{vdd\}
+VB B gnd DC 0
 
 * Load capacitance & additional loads
 VmeasL L L_load 0
@@ -332,16 +332,19 @@ C {code.sym} -60 -410 0 0 {name=DYNAMIC_POWER only_toplevel=false value="* Stimu
 * .OPTIONS SAVE CURRENTS
 * .tran 1p 10n
 
-* ---- DYNAMIC ENERGY MEASUREMENT (Per-Pin) ----
-* Mengukur energi (uJ) yang dikirim ke setiap kapasitor beban.
-* Nilai akan positif untuk pengisian (LH) dan negatif untuk pengosongan (HL).
-* .measure tran energy_L_uJ param='integ(I(vmeasl)) * \{vdd\} * 1e6' from=0 to=10n
-* .measure tran energy_E_uJ param='integ(I(vmease)) * \{vdd\} * 1e6' from=0 to=10n
-* .measure tran energy_G_uJ param='integ(I(vmeasg)) * \{vdd\} * 1e6' from=0 to=10n
+* ---- DYNAMIC ENERGY MEASUREMENT (Pin) ----
+* Measuring energy that sent to the load capacitor for each pin 
+* Dynamic power will be positive when LH and negative when HL
+* .MEASURE TRAN curr_L_uJ INTEG I(VmeasL) from=0 to=10n
+* .MEASURE TRAN energy_L_uJ param='curr_L_uJ * vdd'
+* .MEASURE TRAN curr_E_uJ INTEG I(VmeasE) from=0 to=10n
+* .MEASURE TRAN energy_E_uJ param='curr_E_uJ * vdd'
+* .MEASURE TRAN curr_G_uJ INTEG I(VmeasG) from=0 to=10n
+* .MEASURE TRAN energy_G_uJ param='curr_G_uJ * vdd'
 
-* (Opsional) Mengukur energi total dari VDD untuk perbandingan
-* .measure tran energy_TOTAL_uJ param='-1 * integ(I(vvdd)) * \{vdd\} * 1e6' from=0 to=10n
-
+* Total energy of VDD measurement
+* .measure tran curr_TOTAL_uJ INTEG I(vvdd) from=0 to=10n
+* .measure tran energy_TOTAL_uJ param='curr_TOTAL_uJ * (-1) * vdd'
     * run
 
     * echo \\"========================================================================\\"

@@ -3,8 +3,8 @@
 x1 VDD L A E G B GND comp2_1x
 **** begin user architecture code
 
-.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
-.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.include $PDKPATH/libs.tech/ngspice/design.ngspice
+.lib $PDKPATH/libs.tech/ngspice/sm141064.ngspice typical
 
 
 * Stimuli
@@ -40,9 +40,50 @@ x1 VDD L A E G B GND comp2_1x
 * Power
 VVDD VDD gnd DC {vdd}
 
-* Stimuli: A(HL) and B
+* Change stimuli here!
 VA A gnd PULSE({vdd} 0 1n {slew_in} {slew_in} 2n 4n)
 VB B gnd DC {vdd}
+
+* Load capacitance & additional loads
+VmeasL L L_load 0
+CLL L_load gnd {cload}
+VmeasE E E_load 0
+CLE E_load gnd {cload}
+VmeasG G G_load 0
+CLG G_load gnd {cload}
+
+********************************************************************************
+* Analysis Statements
+********************************************************************************
+.OPTIONS SAVE CURRENTS
+.tran 1p 10n
+* ---- DYNAMIC ENERGY MEASUREMENT (Pin) ----
+* Measuring energy that sent to the load capacitor for each pin
+* Dynamic power will be positive when LH and negative when HL
+.MEASURE TRAN curr_L_uJ INTEG I(VmeasL) from=0 to=10n
+.MEASURE TRAN energy_L_uJ param='curr_L_uJ * vdd'
+.MEASURE TRAN curr_E_uJ INTEG I(VmeasE) from=0 to=10n
+.MEASURE TRAN energy_E_uJ param='curr_E_uJ * vdd'
+.MEASURE TRAN curr_G_uJ INTEG I(VmeasG) from=0 to=10n
+.MEASURE TRAN energy_G_uJ param='curr_G_uJ * vdd'
+
+* Total energy of VDD measurement
+.measure tran curr_TOTAL_uJ INTEG I(vvdd) from=0 to=10n
+.measure tran energy_TOTAL_uJ param='curr_TOTAL_uJ * (-1) * vdd'
+
+********************************************************************************
+* Simulation Control Block
+********************************************************************************
+.control
+    run
+.endc
+.end
+
+
+* Copy and paste this line to code "ANALYSIS"
+* Stimuli: A(HL) and B
+* VA A gnd PULSE({vdd} 0 1n {slew_in} {slew_in} 2n 4n)
+* VB B gnd DC {vdd}
 
 * Stimuli: A(HL) and !B
 * VA A gnd PULSE({vdd} 0 1n {slew_in} {slew_in} 2n 4n)
@@ -70,148 +111,252 @@ VB B gnd DC {vdd}
 
 * Stimuli: B(LH) and !A
 * VA A gnd DC 0
-* VB B gnd PULSE(0 {vdd} 1n {slew_in} {slew_in} 2n 4n)
+* VB B gnd PULSE(0 {vdd} 1n {slew_in} {slew_in} 2n 4n)
 
-* Load capacitance
-CLL L gnd {cload}
-CLE E gnd {cload}
-CLG G gnd {cload}
-
-********************************************************************************
-* Analysis Statements
-********************************************************************************
-.OPTIONS SAVE CURRENTS
-.tran 1p 10n
+* .OPTIONS SAVE CURRENTS
+* .tran 1p 10n
 
 * --- Delay and Slew Measurements ---
 * Stimuli: A(HL) and B -> L(LH) & E(HL)
 * Delay and Rise Time of L(LH)
-.MEASURE TRAN delay_AHL_B_L TRIG V(A) VAL={vh} FALL=1 TARG V(L) VAL={vh} RISE=1
-.MEASURE TRAN rise_AHL_B_L TRIG V(L) VAL={v_10} RISE=1 TARG V(L) VAL={v_90} RISE=1
+* .MEASURE TRAN delay_AHL_B_L TRIG V(A) VAL={vh} FALL=1 TARG V(L) VAL={vh} RISE=1
+* .MEASURE TRAN rise_AHL_B_L TRIG V(L) VAL={v_10} RISE=1 TARG V(L) VAL={v_90} RISE=1
 * Delay and Fall Time of E(HL)
-.MEASURE TRAN delay_AHL_B_E TRIG V(A) VAL={vh} FALL=1 TARG V(E) VAL={vh} FALL=1
-.MEASURE TRAN fall_AHL_B_E TRIG V(E) VAL={v_90} FALL=1 TARG V(E) VAL={v_10} FALL=1
+* .MEASURE TRAN delay_AHL_B_E TRIG V(A) VAL={vh} FALL=1 TARG V(E) VAL={vh} FALL=1
+* .MEASURE TRAN fall_AHL_B_E TRIG V(E) VAL={v_90} FALL=1 TARG V(E) VAL={v_10} FALL=1
 
 * Stimuli: A(HL) and !B -> E(LH) & G(HL)
 * Delay and Rise Time of E(LH)
-.MEASURE TRAN delay_AHL_noB_E TRIG V(A) VAL={vh} FALL=1 TARG V(E) VAL={vh} RISE=1
-.MEASURE TRAN rise_AHL_noB_E TRIG V(E) VAL={v_10} RISE=1 TARG V(E) VAL={v_90} RISE=1
+* .MEASURE TRAN delay_AHL_noB_E TRIG V(A) VAL={vh} FALL=1 TARG V(E) VAL={vh} RISE=1
+* .MEASURE TRAN rise_AHL_noB_E TRIG V(E) VAL={v_10} RISE=1 TARG V(E) VAL={v_90} RISE=1
 * Delay and Fall Time of G(HL)
-.MEASURE TRAN delay_AHL_noB_G TRIG V(A) VAL={vh} FALL=1 TARG V(G) VAL={vh} FALL=1
-.MEASURE TRAN fall_AHL_noB_G TRIG V(G) VAL={v_90} FALL=1 TARG V(G) VAL={v_10} FALL=1
+* .MEASURE TRAN delay_AHL_noB_G TRIG V(A) VAL={vh} FALL=1 TARG V(G) VAL={vh} FALL=1
+* .MEASURE TRAN fall_AHL_noB_G TRIG V(G) VAL={v_90} FALL=1 TARG V(G) VAL={v_10} FALL=1
 
 * Stimuli: A(LH) and B -> L(HL) & E(LH)
 * Delay and Fall Time of L(HL)
-.MEASURE TRAN delay_ALH_B_L TRIG V(A) VAL={vh} RISE=1 TARG V(L) VAL={vh} FALL=1
-.MEASURE TRAN fall_ALH_B_L TRIG V(L) VAL={v_90} FALL=1 TARG V(L) VAL={v_10} FALL=1
+* .MEASURE TRAN delay_ALH_B_L TRIG V(A) VAL={vh} RISE=1 TARG V(L) VAL={vh} FALL=1
+* .MEASURE TRAN fall_ALH_B_L TRIG V(L) VAL={v_90} FALL=1 TARG V(L) VAL={v_10} FALL=1
 * Delay and Rise Time of E(LH)
-.MEASURE TRAN delay_ALH_B_E TRIG V(A) VAL={vh} RISE=1 TARG V(E) VAL={vh} RISE=1
-.MEASURE TRAN rise_ALH_B_E TRIG V(E) VAL={v_10} RISE=1 TARG V(E) VAL={v_90} RISE=1
+* .MEASURE TRAN delay_ALH_B_E TRIG V(A) VAL={vh} RISE=1 TARG V(E) VAL={vh} RISE=1
+* .MEASURE TRAN rise_ALH_B_E TRIG V(E) VAL={v_10} RISE=1 TARG V(E) VAL={v_90} RISE=1
 
 * Stimuli: A(LH) and !B -> E(HL) & G(LH)
 * Delay and Fall Time of E(HL)
-.MEASURE TRAN delay_ALH_noB_E TRIG V(A) VAL={vh} RISE=1 TARG V(E) VAL={vh} FALL=1
-.MEASURE TRAN fall_ALH_noB_E TRIG V(E) VAL={v_90} FALL=1 TARG V(E) VAL={v_10} FALL=1
+* .MEASURE TRAN delay_ALH_noB_E TRIG V(A) VAL={vh} RISE=1 TARG V(E) VAL={vh} FALL=1
+* .MEASURE TRAN fall_ALH_noB_E TRIG V(E) VAL={v_90} FALL=1 TARG V(E) VAL={v_10} FALL=1
 * Delay and Rise Time of G(LH)
-.MEASURE TRAN delay_ALH_noB_G TRIG V(A) VAL={vh} RISE=1 TARG V(G) VAL={vh} RISE=1
-.MEASURE TRAN rise_ALH_noB_G TRIG V(G) VAL={v_10} RISE=1 TARG V(G) VAL={v_90} RISE=1
+* .MEASURE TRAN delay_ALH_noB_G TRIG V(A) VAL={vh} RISE=1 TARG V(G) VAL={vh} RISE=1
+* .MEASURE TRAN rise_ALH_noB_G TRIG V(G) VAL={v_10} RISE=1 TARG V(G) VAL={v_90} RISE=1
 
 * Stimuli: B(HL) and A -> E(HL) & G(LH)
 * Delay and Fall Time of E(HL)
-.MEASURE TRAN delay_BHL_A_E TRIG V(B) VAL={vh} FALL=1 TARG V(E) VAL={vh} FALL=1
-.MEASURE TRAN fall_BHL_A_E TRIG V(E) VAL={v_90} FALL=1 TARG V(E) VAL={v_10} FALL=1
+* .MEASURE TRAN delay_BHL_A_E TRIG V(B) VAL={vh} FALL=1 TARG V(E) VAL={vh} FALL=1
+* .MEASURE TRAN fall_BHL_A_E TRIG V(E) VAL={v_90} FALL=1 TARG V(E) VAL={v_10} FALL=1
 * Delay and Rise Time of G(LH)
-.MEASURE TRAN delay_BHL_A_G TRIG V(B) VAL={vh} FALL=1 TARG V(G) VAL={vh} RISE=1
-.MEASURE TRAN rise_BHL_A_G TRIG V(G) VAL={v_10} RISE=1 TARG V(G) VAL={v_90} RISE=1
+* .MEASURE TRAN delay_BHL_A_G TRIG V(B) VAL={vh} FALL=1 TARG V(G) VAL={vh} RISE=1
+* .MEASURE TRAN rise_BHL_A_G TRIG V(G) VAL={v_10} RISE=1 TARG V(G) VAL={v_90} RISE=1
 
 * Stimuli: B(HL) and !A -> L(HL) & E(LH)
 * Delay and Fall Time of L(HL)
-.MEASURE TRAN delay_BHL_noA_L TRIG V(B) VAL={vh} FALL=1 TARG V(L) VAL={vh} FALL=1
-.MEASURE TRAN fall_BHL_noA_L TRIG V(L) VAL={v_90} FALL=1 TARG V(L) VAL={v_10} FALL=1
+* .MEASURE TRAN delay_BHL_noA_L TRIG V(B) VAL={vh} FALL=1 TARG V(L) VAL={vh} FALL=1
+* .MEASURE TRAN fall_BHL_noA_L TRIG V(L) VAL={v_90} FALL=1 TARG V(L) VAL={v_10} FALL=1
 * Delay and Rise Time of E(LH)
-.MEASURE TRAN delay_BHL_noA_E TRIG V(B) VAL={vh} FALL=1 TARG V(E) VAL={vh} RISE=1
-.MEASURE TRAN rise_BHL_noA_E TRIG V(E) VAL={v_10} RISE=1 TARG V(E) VAL={v_90} RISE=1
+* .MEASURE TRAN delay_BHL_noA_E TRIG V(B) VAL={vh} FALL=1 TARG V(E) VAL={vh} RISE=1
+* .MEASURE TRAN rise_BHL_noA_E TRIG V(E) VAL={v_10} RISE=1 TARG V(E) VAL={v_90} RISE=1
 
 * Stimuli: B(LH) and A -> E(LH) & G(HL)
 * Delay and Rise Time of E(LH)
-.MEASURE TRAN delay_BLH_A_E TRIG V(B) VAL={vh} RISE=1 TARG V(E) VAL={vh} RISE=1
-.MEASURE TRAN rise_BLH_A_E TRIG V(E) VAL={v_10} RISE=1 TARG V(E) VAL={v_90} RISE=1
+* .MEASURE TRAN delay_BLH_A_E TRIG V(B) VAL={vh} RISE=1 TARG V(E) VAL={vh} RISE=1
+* .MEASURE TRAN rise_BLH_A_E TRIG V(E) VAL={v_10} RISE=1 TARG V(E) VAL={v_90} RISE=1
 * Delay and Fall Time of G(HL)
-.MEASURE TRAN delay_BLH_A_G TRIG V(B) VAL={vh} RISE=1 TARG V(G) VAL={vh} FALL=1
-.MEASURE TRAN fall_BLH_A_G TRIG V(G) VAL={v_90} FALL=1 TARG V(G) VAL={v_10} FALL=1
+* .MEASURE TRAN delay_BLH_A_G TRIG V(B) VAL={vh} RISE=1 TARG V(G) VAL={vh} FALL=1
+* .MEASURE TRAN fall_BLH_A_G TRIG V(G) VAL={v_90} FALL=1 TARG V(G) VAL={v_10} FALL=1
 
 * Stimuli: B(LH) and !A -> L(LH) & E(HL)
 * Delay and Rise Time of L(LH)
-.MEASURE TRAN delay_BLH_noA_L TRIG V(B) VAL={vh} RISE=1 TARG V(L) VAL={vh} RISE=1
-.MEASURE TRAN rise_BLH_noA_L TRIG V(L) VAL={v_10} RISE=1 TARG V(L) VAL={v_90} RISE=1
+* .MEASURE TRAN delay_BLH_noA_L TRIG V(B) VAL={vh} RISE=1 TARG V(L) VAL={vh} RISE=1
+* .MEASURE TRAN rise_BLH_noA_L TRIG V(L) VAL={v_10} RISE=1 TARG V(L) VAL={v_90} RISE=1
 * Delay and Fall Time of E(HL)
-.MEASURE TRAN delay_BLH_noA_E TRIG V(B) VAL={vh} RISE=1 TARG V(E) VAL={vh} FALL=1
-.MEASURE TRAN fall_BLH_noA_E TRIG V(E) VAL={v_90} FALL=1 TARG V(E) VAL={v_10} FALL=1
+* .MEASURE TRAN delay_BLH_noA_E TRIG V(B) VAL={vh} RISE=1 TARG V(E) VAL={vh} FALL=1
+* .MEASURE TRAN fall_BLH_noA_E TRIG V(E) VAL={v_90} FALL=1 TARG V(E) VAL={v_10} FALL=1
 
-********************************************************************************
-* Simulation Control Block
-********************************************************************************
-.control
-	run
-
+* .control
 	* Delay and Output Transition Time Analysis
-	echo "========================================================================"
-    	echo "1. Delay and Output Transition Time Analysis"
-	echo -n "   Input Slew = "
-	echo $&slewin
-	echo -n "   Output Load = "
-	echo $&outload
-    	echo "------------------------------------------------------------------------"
+	* echo "========================================================================"
+    	* echo "1. Delay and Output Transition Time Analysis"
+	* echo -n "   Input Slew = "
+	* echo $&slewin
+	* echo -n "   Output Load = "
+	* echo $&outload
+    	* echo "------------------------------------------------------------------------"
 
 	* Stimuli 1: A(HL) & B -> L(LH) & E(HL)
-	echo -n "  > Delay A(HL)->L(LH): "; print delay_AHL_B_L
-	echo -n "  > Slew L(LH):     "; print rise_AHL_B_L
-	echo -n "  > Delay A(HL)->E(HL): "; print delay_AHL_B_E
-	echo -n "  > Slew E(HL):     "; print fall_AHL_B_E
+	* alter @VA[pulse] = [ {vdd} 0 1n {slew_in} {slew_in} 2n 4n ]
+	* alter @VB[dc] = {vdd}
+	* run
+	* echo -n "  > Delay A(HL)->L(LH): "; print delay_AHL_B_L
+	* echo -n "  > Slew L(LH):     "; print rise_AHL_B_L
+	* echo -n "  > Delay A(HL)->E(HL): "; print delay_AHL_B_E
+	* echo -n "  > Slew E(HL):     "; print fall_AHL_B_E
 
 	* Stimuli 2: A(HL) & !B -> E(LH) & G(HL)
-	echo -n "  > Delay A(HL)->E(LH): "; print delay_AHL_noB_E
-	echo -n "  > Slew E(LH):     "; print rise_AHL_noB_E
-	echo -n "  > Delay A(HL)->G(HL): "; print delay_AHL_noB_G
-	echo -n "  > Slew G(HL):     "; print fall_AHL_noB_G
+	* alter @VB[dc] = 0
+	* run
+	* echo -n "  > Delay A(HL)->E(LH): "; print delay_AHL_noB_E
+	* echo -n "  > Slew E(LH):     "; print rise_AHL_noB_E
+	* echo -n "  > Delay A(HL)->G(HL): "; print delay_AHL_noB_G
+	* echo -n "  > Slew G(HL):     "; print fall_AHL_noB_G
 
 	* Stimuli 3: A(LH) & B -> L(HL) & E(LH)
-	echo -n "  > Delay A(LH)->L(HL): "; print delay_ALH_B_L
-	echo -n "  > Slew L(HL):     "; print fall_ALH_B_L
-	echo -n "  > Delay A(LH)->E(LH): "; print delay_ALH_B_E
-	echo -n "  > Slew E(LH):     "; print rise_ALH_B_E
+	* alter @VA[pulse] = [ 0 {vdd} 1n {slew_in} {slew_in} 2n 4n ]
+	* alter @VB[dc] = {vdd}
+	* run
+	* echo -n "  > Delay A(LH)->L(HL): "; print delay_ALH_B_L
+	* echo -n "  > Slew L(HL):     "; print fall_ALH_B_L
+	* echo -n "  > Delay A(LH)->E(LH): "; print delay_ALH_B_E
+	* echo -n "  > Slew E(LH):     "; print rise_ALH_B_E
 
 	* Stimuli 4: A(LH) & !B -> E(HL) & G(LH)
-	echo -n "  > Delay A(LH)->E(HL): "; print delay_ALH_noB_E
-	echo -n "  > Slew E(HL):     "; print fall_ALH_noB_E
-	echo -n "  > Delay A(LH)->G(LH): "; print delay_ALH_noB_G
-	echo -n "  > Slew G(LH):     "; print rise_ALH_noB_G
+	* alter @VB[dc] = 0
+	* run
+	* echo -n "  > Delay A(LH)->E(HL): "; print delay_ALH_noB_E
+	* echo -n "  > Slew E(HL):     "; print fall_ALH_noB_E
+	* echo -n "  > Delay A(LH)->G(LH): "; print delay_ALH_noB_G
+	* echo -n "  > Slew G(LH):     "; print rise_ALH_noB_G
 
 	* Stimuli 5: B(HL) & A -> E(HL) & G(LH)
-	echo -n "  -> Delay B(HL)->E(HL): "; print delay_BHL_A_E
-	echo -n "  -> Slew E(HL):     "; print fall_BHL_A_E
-	echo -n "  -> Delay B(HL)->G(LH): "; print delay_BHL_A_G
-	echo -n "  -> Slew G(LH):     "; print rise_BHL_A_G
+	* alter @VA[dc] = {vdd}
+	* alter @VB[pulse] = [ {vdd} 0 1n {slew_in} {slew_in} 2n 4n ]
+	* run
+	* echo -n "  -> Delay B(HL)->E(HL): "; print delay_BHL_A_E
+	* echo -n "  -> Slew E(HL):     "; print fall_BHL_A_E
+	* echo -n "  -> Delay B(HL)->G(LH): "; print delay_BHL_A_G
+	* echo -n "  -> Slew G(LH):     "; print rise_BHL_A_G
 
 	* Stimuli 6: B(HL) & !A -> L(HL) & E(LH)
-	echo -n "  -> Delay B(HL)->L(HL): "; print delay_BHL_noA_L
-	echo -n "  -> Slew L(HL):     "; print fall_BHL_noA_L
-	echo -n "  -> Delay B(HL)->E(LH): "; print delay_BHL_noA_E
-	echo -n "  -> Slew E(LH):     "; print rise_BHL_noA_E
+	* alter @VA[dc] = 0
+	* run
+	* echo -n "  -> Delay B(HL)->L(HL): "; print delay_BHL_noA_L
+	* echo -n "  -> Slew L(HL):     "; print fall_BHL_noA_L
+	* echo -n "  -> Delay B(HL)->E(LH): "; print delay_BHL_noA_E
+	* echo -n "  -> Slew E(LH):     "; print rise_BHL_noA_E
 
 	* Stimuli 7: B(LH) & A -> E(LH) & G(HL)
-	echo -n "  -> Delay B(LH)->E(LH): "; print delay_BLH_A_E
-	echo -n "  -> Slew E(LH):     "; print rise_BLH_A_E
-	echo -n "  -> Delay B(LH)->G(HL): "; print delay_BLH_A_G
-	echo -n "  -> Slew G(HL):     "; print fall_BLH_A_G
+	* alter @VA[dc] = {vdd}
+	* alter @VB[pulse] = [ 0 {vdd} 1n {slew_in} {slew_in} 2n 4n ]
+	* run
+	* echo -n "  -> Delay B(LH)->E(LH): "; print delay_BLH_A_E
+	* echo -n "  -> Slew E(LH):     "; print rise_BLH_A_E
+	* echo -n "  -> Delay B(LH)->G(HL): "; print delay_BLH_A_G
+	* echo -n "  -> Slew G(HL):     "; print fall_BLH_A_G
 
 	* Stimuli 8: B(LH) & !A -> L(LH) & E(HL)
-	echo -n "  -> Delay B(LH)->L(LH): "; print delay_BLH_noA_L
-	echo -n "  -> Slew L(LH):     "; print rise_BLH_noA_L
-	echo -n "  -> Delay B(LH)->E(HL): "; print delay_BLH_noA_E
-	echo -n "  -> Slew E(HL):     "; print fall_BLH_noA_E
-.endc
-.end
+	* alter @VA[dc] = 0
+	* run
+	* echo -n "  -> Delay B(LH)->L(LH): "; print delay_BLH_noA_L
+	* echo -n "  -> Slew L(LH):     "; print rise_BLH_noA_L
+	* echo -n "  -> Delay B(LH)->E(HL): "; print delay_BLH_noA_E
+	* echo -n "  -> Slew E(HL):     "; print fall_BLH_noA_E
+
+
+* STIMULI
+* !A & !B
+* VA A gnd DC 0
+* VB B gnd DC 0
+
+* !A & B
+* VA A gnd DC 0
+* VB B gnd DC {vdd}
+
+* A & !B
+* VA A gnd DC {vdd}
+* VB B gnd DC 0
+
+* A & B
+* VA A gnd DC {vdd}
+* VB B gnd DC {vdd}
+
+* .OP
+
+* .control
+	* run
+	* let leakage_current = -I(VVDD)
+	* let leak_watt = {vdd}*leakage_current
+	* print leak_watt
+	* save all
+* .endc
+* .end
+
+
+* Stimuli: A(HL) and B
+* VA A gnd PULSE({vdd} 0 1n {slew_in} {slew_in} 2n 4n)
+* VB B gnd DC {vdd}
+
+* Stimuli: A(HL) and !B
+* VA A gnd PULSE({vdd} 0 1n {slew_in} {slew_in} 2n 4n)
+* VB B gnd DC 0
+
+* Stimuli: A(LH) and B
+* VA A gnd PULSE(0 {vdd} 1n {slew_in} {slew_in} 2n 4n)
+* VB B gnd DC {vdd}
+
+* Stimuli: A(LH) and !B
+* VA A gnd PULSE(0 {vdd} 1n {slew_in} {slew_in} 2n 4n)
+* VB B gnd DC 0
+
+* Stimuli: B(HL) and A
+* VA A gnd DC {vdd}
+* VB B gnd PULSE({vdd} 0 1n {slew_in} {slew_in} 2n 4n)
+
+* Stimuli: B(HL) and !A
+* VA A gnd DC 0
+* VB B gnd PULSE({vdd} 0 1n {slew_in} {slew_in} 2n 4n)
+
+* Stimuli: B(LH) and A
+* VA A gnd DC {vdd}
+* VB B gnd PULSE(0 {vdd} 1n {slew_in} {slew_in} 2n 4n)
+
+* Stimuli: B(LH) and !A
+* VA A gnd DC 0
+* VB B gnd PULSE(0 {vdd} 1n {slew_in} {slew_in} 2n 4n)
+
+* VmeasL L L_load 0
+* CLL L_load gnd {cload}
+* VmeasE E E_load 0
+* CLE E_load gnd {cload}
+* VmeasG G G_load 0
+* CLG G_load gnd {cload}
+
+* .OPTIONS SAVE CURRENTS
+* .tran 1p 10n
+
+* ---- DYNAMIC ENERGY MEASUREMENT (Per-Pin) ----
+* Mengukur energi (uJ) yang dikirim ke setiap kapasitor beban.
+* Nilai akan positif untuk pengisian (LH) dan negatif untuk pengosongan (HL).
+* .measure tran energy_L_uJ param='integ(I(vmeasl)) * {vdd} * 1e6' from=0 to=10n
+* .measure tran energy_E_uJ param='integ(I(vmease)) * {vdd} * 1e6' from=0 to=10n
+* .measure tran energy_G_uJ param='integ(I(vmeasg)) * {vdd} * 1e6' from=0 to=10n
+
+* (Opsional) Mengukur energi total dari VDD untuk perbandingan
+* .measure tran energy_TOTAL_uJ param='-1 * integ(I(vvdd)) * {vdd} * 1e6' from=0 to=10n
+
+    * run
+
+    * echo "========================================================================"
+    * echo "          Dynamic Energy Analysis Results (uW/MHz atau uJ/cycle)"
+    * echo "========================================================================"
+    * echo "CATATAN: Nilai energi yang mendekati nol berarti tidak ada transisi"
+    * echo "         pada pin output tersebut untuk stimulus yang dipilih."
+    * echo "------------------------------------------------------------------------"
+
+    * print energy_L_uJ
+    * print energy_E_uJ
+    * print energy_G_uJ
+
+    * echo "------------------------------------------------------------------------"
+    * print energy_TOTAL_uJ
+    * echo "========================================================================"
 
 **** end user architecture code
 **.ends

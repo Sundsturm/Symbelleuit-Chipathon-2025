@@ -27,4 +27,416 @@ library (analysis_comp2) {
   nom_temperature : 25;
 
   /* Table Templates */
+  lu_table_template (delay_template_1x1) {
+    variable_1 : input_net_transition;
+    variable_2 : total_output_net_capacitance;
+    index_1 ("0.01");
+    index_2 ("0.001");
+  }
+
+  /* COMP2_1X */
+  cell (COMP2_1X) {
+    area : 0;
+    pg_pin (VDD) {
+      voltage_name : VDD;
+      pg_type : primary_power;
+    }
+    pg_pin (VSS) {
+      voltage_name : VSS;
+      pg_type : primary_ground;
+    }
+    pg_pin (VPW) {
+      voltage_name : VPW;
+      pg_type : pwell;
+    }
+    pg_pin (VNW) {
+      voltage_name : VNW;
+      pg_type : nwell;
+    }
+    pin (A) {
+      direction : input;
+      capacitance : 0.009686;
+    }
+    pin (B) {
+      direction : input;
+      capacitance : 0.009691;
+    }
+    pin (E) {
+      direction : output;
+      function : "!(A^B)";
+      timing () {
+        related_pin : "A";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.188651");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.119883");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.173805");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.126580");
+        }
+      }
+      timing () {
+        related_pin : "B";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.142978");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.115600");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.127075");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.060761");
+        }
+      }
+    }
+    pin (G) {
+      direction : output;
+      function : "A&(!B)";
+      timing () {
+        related_pin : "A";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.108464");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.036346");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.080140");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.026890");
+        }
+      }
+      timing () {
+        related_pin : "B";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.178370");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.036656");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.156420");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.029586");
+        }
+      }
+    }
+    pin (L) {
+      direction : output;
+      function : "(!A)&B";
+      timing () {
+        related_pin : "A";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.177064");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.036695");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.145319");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.027589");
+        }
+      }
+      timing () {
+        related_pin : "B";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.123140");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.036434");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.092682");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.029504");
+        }
+      }
+    }
+  }
+
+  /* COMP2_2X */
+  cell (COMP2_2X) {
+    area : 0;
+    pg_pin (VDD) {
+      voltage_name : VDD;
+      pg_type : primary_power;
+    }
+    pg_pin (VSS) {
+      voltage_name : VSS;
+      pg_type : primary_ground;
+    }
+    pg_pin (VPW) {
+      voltage_name : VPW;
+      pg_type : pwell;
+    }
+    pg_pin (VNW) {
+      voltage_name : VNW;
+      pg_type : nwell;
+    }
+    pin (A) {
+      direction : input;
+      capacitance : 0.012970;
+    }
+    pin (B) {
+      direction : input;
+      capacitance : 0.012978;
+    }
+    pin (E) {
+      direction : output;
+      function : "!(A^B)";
+      timing () {
+        related_pin : "A";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.205363");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.115239");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.194385");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.125147");
+        }
+      }
+      timing () {
+        related_pin : "B";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.157202");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.110255");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.142147");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.060340");
+        }
+      }
+    }
+    pin (G) {
+      direction : output;
+      function : "A&(!B)";
+      timing () {
+        related_pin : "A";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.133727");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.038997");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.096471");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.028817");
+        }
+      }
+      timing () {
+        related_pin : "B";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.219140");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.039372");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.191718");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.031648");
+        }
+      }
+    }
+    pin (L) {
+      direction : output;
+      function : "(!A)&B";
+      timing () {
+        related_pin : "A";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.225833");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.039479");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.183285");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.029751");
+        }
+      }
+      timing () {
+        related_pin : "B";
+        cell_rise (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.149283");
+        }
+        rise_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.039145");
+        }
+        cell_fall (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.108860");
+        }
+        fall_transition (delay_template_1x1) {
+          index_1 ("0.01");
+          index_2 ("0.001");
+          values ( \
+            "0.031443");
+        }
+      }
+    }
+  }
 }
