@@ -1,9 +1,47 @@
+* Global includes and libraries from the user
 .include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
 
+* Power Supplies
+VVDD VDD 0 DC 3.3V
+VVSS VSS 0 DC 0V
 
-** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive_v2/2bit_comp_2x.sch
-**.subckt 2bit_comp_2x L VDD G B1 B0 E A1 A0 VSS
+* Input stimuli
+* A = A1 A0
+* B = B1 B0
+
+* LSB, period 20ns
+VA0 A0 VSS PULSE(0 3.3 0 0.1n 0.1n 10n 20n)   
+* Period 40ns
+VA1 A1 VSS PULSE(0 3.3 0 0.1n 0.1n 20n 40n)
+* Period 80ns
+VB0 B0 VSS PULSE(0 3.3 0 0.1n 0.1n 40n 80n)   
+* MSB, period 160ns
+VB1 B1 VSS PULSE(0 3.3 0 0.1n 0.1n 80n 160n)  
+
+* Device Under Test (DUT) instantiation
+* Subcircuit definition pin order from user file: L, VDD, G, B1, B0, E, A1, A0, VSS
+Xdut L VDD G B1 B0 E A1 A0 VSS 2bit_comp_2x
+
+* Simulation commands
+.control
+run
+tran 0.1n 320n
+let B1_plot = v(B1) + 24
+let B0_plot = v(B0) + 20
+let A1_plot = v(A1) + 16
+let A0_plot = v(A0) + 12
+let L_plot = v(L) + 8
+let G_plot = v(G) + 4
+let E_plot = v(E) + 0
+plot B1_plot B0_plot A1_plot A0_plot L_plot G_plot E_plot title "2-bit Comparator Simulation" xlabel "Time (s)" ylabel "Voltage (V) with Offset"
+.endc
+
+
+* ======== User-provided netlist starting from here ========
+
+* sch_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive_v2/2bit_comp_2x.sch
+.subckt 2bit_comp_2x L VDD G B1 B0 E A1 A0 VSS
 *.ipin VDD
 *.ipin B1
 *.ipin B0
@@ -21,7 +59,7 @@ x6 VDD B1 net1 net4 VSS my_nor
 x5 VDD net4 L net5 VSS my_xor_2x
 x7 VDD L E G VSS my_nor_2x
 x8 VDD net5 net2 E VSS my_nor_2x
-**.ends
+.ends
 
 * expanding   symbol:  my_nxor.sym # of pins=5
 ** sym_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive_v2/my_nxor.sym
