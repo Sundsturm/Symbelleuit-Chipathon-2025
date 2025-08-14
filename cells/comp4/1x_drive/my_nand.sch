@@ -94,4 +94,4 @@ spiceprefix=X
 }
 C {devices/ipin.sym} 260 -80 0 0 {name=p3 lab=B}
 C {devices/iopin.sym} 520 -240 3 0 {name=p4 lab=VDD}
-C {devices/iopin.sym} 530 150 1 0 {name=p5 lab=GND}
+C {devices/iopin.sym} 530 150 1 0 {name=p5 lab=VSS}

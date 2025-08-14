@@ -1,44 +1,77 @@
-** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/2bit_Comparator/1x_drive/2bit_comps_1x_test.sch
-**.subckt 2bit_comps_1x_test
-x1 net1 net2 net3 net4 net5 net6 net7 net8 net9 2bit_comps_1x
-**.ends
+* Global includes and libraries from the user
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
 
-* expanding   symbol:  2bit_comps_1x.sym # of pins=9
-** sym_path: /foss/designs/Symbelleuit-Chipathon-2025/2bit_Comparator/1x_drive/2bit_comps_1x.sym
-** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/2bit_Comparator/1x_drive/2bit_comps_1x.sch
-.subckt 2bit_comps_1x B VDD A B1 B0 EQUAL A1 A0 GND
+* Power Supplies
+VVDD VDD 0 DC 3.3V
+VVSS VSS 0 DC 0V
+
+* Input stimuli
+* A = A1 A0
+* B = B1 B0
+
+* LSB, period 20ns
+VA0 A0 VSS PULSE(0 3.3 0 0.1n 0.1n 10n 20n)   
+* Period 40ns
+VA1 A1 VSS PULSE(0 3.3 0 0.1n 0.1n 20n 40n)
+* Period 80ns
+VB0 B0 VSS PULSE(0 3.3 0 0.1n 0.1n 40n 80n)   
+* MSB, period 160ns
+VB1 B1 VSS PULSE(0 3.3 0 0.1n 0.1n 80n 160n) 
+
+* Device Under Test (DUT) instantiation
+* Subcircuit definition pin order from user file: L, VDD, G, B1, B0, E, A1, A0, VSS
+Xdut L VDD G B1 B0 E A1 A0 VSS 2bit_comp_1x
+
+* Simulation commands
+.control
+run
+tran 0.1n 320n
+let B1_plot = v(B1) + 24
+let B0_plot = v(B0) + 20
+let A1_plot = v(A1) + 16
+let A0_plot = v(A0) + 12
+let L_plot = v(L) + 8
+let G_plot = v(G) + 4
+let E_plot = v(E) + 0
+plot B1_plot B0_plot A1_plot A0_plot L_plot G_plot E_plot title "2-bit Comparator Simulation" xlabel "Time (s)" ylabel "Voltage (V) with Offset"
+.endc
+
+
+
+* sch_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive_v2/2bit_comp_1x.sch
+.subckt 2bit_comp_1x L VDD G B1 B0 E A1 A0 VSS
 *.ipin VDD
 *.ipin B1
 *.ipin B0
 *.ipin A1
-*.ipin GND
+*.ipin VSS
 *.ipin A0
-*.opin B
-*.opin A
-*.opin EQUAL
-x1 VDD B1 net1 A1 GND my_nxor
-x2 VDD B0 net2 A0 GND my_xor
-x3 VDD B0 net2 net3 GND my_nand
-x4 VDD net1 net3 net5 GND my_nand
-x5 VDD net4 B net5 GND my_xor
-x6 VDD B1 net1 net4 GND my_nor
-x7 VDD net5 net2 EQUAL GND my_nor
-x8 VDD B EQUAL A GND my_nor
+*.opin L
+*.opin G
+*.opin E
+x1 VDD B1 net1 A1 VSS my_nxor
+x2 VDD B0 net2 A0 VSS my_xor
+x3 VDD B0 net2 net3 VSS my_nand
+x4 VDD net1 net3 net5 VSS my_nand
+x5 VDD net4 L net5 VSS my_xor
+x6 VDD B1 net1 net4 VSS my_nor
+x7 VDD net5 net2 E VSS my_nor
+x8 VDD L E G VSS my_nor
 .ends
 
-
 * expanding   symbol:  my_nxor.sym # of pins=5
-** sym_path: /foss/designs/Symbelleuit-Chipathon-2025/2bit_Comparator/1x_drive/my_nxor.sym
-** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/2bit_Comparator/1x_drive/my_nxor.sch
-.subckt my_nxor VDD A Out B GND
+** sym_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive_v2/my_nxor.sym
+** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive_v2/my_nxor.sch
+.subckt my_nxor VDD A Out B VSS
 *.iopin VDD
-*.iopin GND
+*.iopin VSS
 *.ipin A
 *.ipin B
 *.opin Out
 XM2 net1 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM4 Out A net4 GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM4 Out A net4 VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM1 Out B net1 VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
@@ -46,35 +79,35 @@ XM3 net2 net5 VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM5 Out net6 net2 VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM6 net4 net6 GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM6 net4 net6 VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM7 Out net5 net3 GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM7 Out net5 net3 VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM8 net3 B GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM8 net3 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM9 net5 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM10 net6 B VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM11 net5 A GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM11 net5 A VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM12 net6 B GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM12 net6 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 .ends
 
 
 * expanding   symbol:  my_xor.sym # of pins=5
-** sym_path: /foss/designs/Symbelleuit-Chipathon-2025/2bit_Comparator/1x_drive/my_xor.sym
-** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/2bit_Comparator/1x_drive/my_xor.sch
-.subckt my_xor VDD A Out B GND
+** sym_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive_v2/my_xor.sym
+** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive_v2/my_xor.sch
+.subckt my_xor VDD A Out B VSS
 *.iopin VDD
-*.iopin GND
+*.iopin VSS
 *.ipin A
 *.ipin B
 *.opin Out
 XM2 net1 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM4 Out A net4 GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM4 Out A net4 VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM1 Out net6 net1 VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
@@ -82,59 +115,59 @@ XM3 net2 net5 VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM5 Out B net2 VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM6 net4 B GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM6 net4 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM7 Out net5 net3 GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM7 Out net5 net3 VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM8 net3 net6 GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM8 net3 net6 VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM9 net5 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM10 net6 B VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM11 net5 A GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM11 net5 A VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM12 net6 B GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM12 net6 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 .ends
 
 
 * expanding   symbol:  my_nand.sym # of pins=5
-** sym_path: /foss/designs/Symbelleuit-Chipathon-2025/2bit_Comparator/1x_drive/my_nand.sym
-** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/2bit_Comparator/1x_drive/my_nand.sch
-.subckt my_nand VDD A B Out GND
+** sym_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive_v2/my_nand.sym
+** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive_v2/my_nand.sch
+.subckt my_nand VDD A B Out VSS
 *.ipin A
 *.opin Out
 *.ipin B
 *.iopin VDD
-*.iopin GND
-XM1 Out A net1 GND nfet_03v3 L=0.3u W=0.85u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+*.iopin VSS
+XM1 Out A net1 VSS nfet_03v3 L=0.3u W=0.85u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM2 Out A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM3 Out B VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM4 net1 B GND GND nfet_03v3 L=0.3u W=0.85u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM4 net1 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 .ends
 
 
 * expanding   symbol:  my_nor.sym # of pins=5
-** sym_path: /foss/designs/Symbelleuit-Chipathon-2025/2bit_Comparator/1x_drive/my_nor.sym
-** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/2bit_Comparator/1x_drive/my_nor.sch
-.subckt my_nor VDD A B Out GND
+** sym_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive_v2/my_nor.sym
+** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive_v2/my_nor.sch
+.subckt my_nor VDD A B Out VSS
 *.ipin A
 *.ipin B
 *.iopin VDD
-*.iopin GND
+*.iopin VSS
 *.opin Out
 XM2 net1 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM1 Out B net1 VDD pfet_03v3 L=0.3u W=1.7u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM3 Out A GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM3 Out A VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM4 Out B GND GND nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM4 Out B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 .ends
 

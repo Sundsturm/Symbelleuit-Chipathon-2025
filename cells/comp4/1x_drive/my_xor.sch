@@ -201,7 +201,7 @@ model=nfet_03v3
 spiceprefix=X
 }
 C {devices/iopin.sym} 410 80 3 0 {name=p4 lab=VDD}
-C {devices/iopin.sym} 400 510 1 0 {name=p5 lab=GND
+C {devices/iopin.sym} 400 510 1 0 {name=p5 lab=VSS
 }
 C {devices/ipin.sym} -40 200 0 0 {name=p1 lab=A}
 C {devices/ipin.sym} -90 400 0 0 {name=p3 lab=B}
