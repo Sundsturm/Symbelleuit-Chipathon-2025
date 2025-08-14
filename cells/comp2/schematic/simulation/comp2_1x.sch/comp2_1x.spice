@@ -11,13 +11,13 @@ M23 E A net3 VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
 M24 net3 NOT_B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
 M1 NOT_B B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
 M2 NOT_B B VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
-M3 NOT_A A GND GND nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M3 NOT_A A VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
 M4 NOT_A A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
-M5 net5 NOT_A net4 GND nfet_03v3 L=0.3u W=0.85u nf=1 m=1
-M6 net4 B GND GND nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M5 net5 NOT_A net4 VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M6 net4 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
 M7 net5 B VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
 M8 net5 NOT_A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
-M9 L net5 GND GND nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M9 L net5 VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
 M10 L net5 VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
 M11 net7 A net6 VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
 M12 net6 NOT_B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1

@@ -258,11 +258,11 @@ library (analysis_comp2) {
     }
     pin (A) {
       direction : input;
-      capacitance : 0.012970;
+      capacitance : 0.009683;
     }
     pin (B) {
       direction : input;
-      capacitance : 0.012978;
+      capacitance : 0.009692;
     }
     pin (E) {
       direction : output;
@@ -273,25 +273,25 @@ library (analysis_comp2) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.205363");
+            "0.181235");
         }
         rise_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.115239");
+            "0.111571");
         }
         cell_fall (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.194385");
+            "0.168085");
         }
         fall_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.125147");
+            "0.119553");
         }
       }
       timing () {
@@ -300,25 +300,25 @@ library (analysis_comp2) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.157202");
+            "0.137391");
         }
         rise_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.110255");
+            "0.107275");
         }
         cell_fall (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.142147");
+            "0.118871");
         }
         fall_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.060340");
+            "0.053313");
         }
       }
     }
@@ -331,25 +331,25 @@ library (analysis_comp2) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.133727");
+            "0.104721");
         }
         rise_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.038997");
+            "0.032554");
         }
         cell_fall (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.096471");
+            "0.074929");
         }
         fall_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.028817");
+            "0.022980");
         }
       }
       timing () {
@@ -358,25 +358,25 @@ library (analysis_comp2) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.219140");
+            "0.174674");
         }
         rise_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.039372");
+            "0.032864");
         }
         cell_fall (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.191718");
+            "0.150949");
         }
         fall_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.031648");
+            "0.025716");
         }
       }
     }
@@ -389,25 +389,25 @@ library (analysis_comp2) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.225833");
+            "0.173397");
         }
         rise_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.039479");
+            "0.032893");
         }
         cell_fall (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.183285");
+            "0.140108");
         }
         fall_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.029751");
+            "0.023676");
         }
       }
       timing () {
@@ -416,25 +416,25 @@ library (analysis_comp2) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.149283");
+            "0.119386");
         }
         rise_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.039145");
+            "0.032639");
         }
         cell_fall (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.108860");
+            "0.087141");
         }
         fall_transition (delay_template_1x1) {
           index_1 ("0.01");
           index_2 ("0.001");
           values ( \
-            "0.031443");
+            "0.025589");
         }
       }
     }
