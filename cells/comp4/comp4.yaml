@@ -20,21 +20,21 @@ settings:
         energy:             fJ
     cell_defaults:
         models:
-            - $PDKPATH/libs.tech/ngspice/design.ngspice
-            - $PDKPATH/libs.tech/ngspice/sm141064.ngspice typical
+            - /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+            - /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
         slews: [0.01]
         loads: [0.001]
 cells:
     comp4_1x:
-        netlist: <Tersedia>
+        netlist: 1x_drive_v2/simulation/2bit_comps_1x.sch/2bit_comps_1x.spice
         inputs: [A1, A0, B1, B0]
         outputs: [L, E, G]
         functions:
             - L=~(A1 | (~(B1 ^ B0)))
             - E=~(B0 | (~((~(B1 ^ B0)) & A0)))
             - G=~((A1 ^ A0) | (~((~(B1 ^ B0)) & A0)))
-    comp4_1x:
-        netlist: <Tersedia>
+    comp4_2x:
+        netlist: 2x_drive/simulation/2bit_comps_2x.sch/2bit_comps_2x.spice
         inputs: [A1, A0, B1, B0]
         outputs: [L, E, G]
         functions:
