@@ -4,4 +4,4 @@ K {}
 V {}
 S {}
 E {}
-C {2bit_comps_2x.sym} 30 -10 0 0 {name=x1}
+C {2bit_comps_1x.sym} 30 0 0 0 {name=x1}
