@@ -1,0 +1,43 @@
+settings:
+    lib_name:        analysis_comp4
+    results_dir:     lib
+    omit_on_failure: True
+    named_nodes:
+        vdd:
+            name:    VDD
+            voltage: 3.3
+        vss:
+            name:    VSS
+            voltage: 0
+    units:
+        # Specify all units for clarity, even though only resistance differs from the default
+        time:               ns
+        voltage:            V
+        current:            uA
+        pulling_resistance: kOhm
+        leakage_power:      nW
+        capacitive_load:    pF
+        energy:             fJ
+    cell_defaults:
+        models:
+            - $PDKPATH/libs.tech/ngspice/design.ngspice
+            - $PDKPATH/libs.tech/ngspice/sm141064.ngspice typical
+        slews: [0.01]
+        loads: [0.001]
+cells:
+    comp4_1x:
+        netlist: <Tersedia>
+        inputs: [A1, A0, B1, B0]
+        outputs: [L, E, G]
+        functions:
+            - L=~(A1 | (~(B1 ^ B0)))
+            - E=~(B0 | (~((~(B1 ^ B0)) & A0)))
+            - G=~((A1 ^ A0) | (~((~(B1 ^ B0)) & A0)))
+    comp4_1x:
+        netlist: <Tersedia>
+        inputs: [A1, A0, B1, B0]
+        outputs: [L, E, G]
+        functions:
+            - L=~(A1 | (~(B1 ^ B0)))
+            - E=~(B0 | (~((~(B1 ^ B0)) & A0)))
+            - G=~((A1 ^ A0) | (~((~(B1 ^ B0)) & A0)))
