@@ -89,25 +89,22 @@ N 1310 -260 1410 -260 {lab=#net5}
 N 1310 -260 1310 -220 {lab=#net5}
 N 1410 -500 1410 -330 {lab=#net5}
 N 1410 -500 1450 -500 {lab=#net5}
-N 1750 -500 2000 -500 {lab=B}
-N 1760 -500 1760 -380 {lab=B}
-N 1610 -380 1760 -380 {lab=B}
-N 1610 -380 1610 -350 {lab=B}
-N 1610 -200 1660 -200 {lab=#net6}
-N 1660 -290 1660 -200 {lab=#net6}
-N 1570 -290 1660 -290 {lab=#net6}
-N 1570 -330 1570 -290 {lab=#net6}
-N 1570 -330 1610 -330 {lab=#net6}
-N 1660 -200 2000 -200 {lab=#net6}
-N 1910 -330 2000 -330 {lab=A}
+N 1750 -500 2000 -500 {lab=L}
+N 1760 -500 1760 -380 {lab=L}
+N 1610 -380 1760 -380 {lab=L}
+N 1610 -380 1610 -350 {lab=L}
+N 1610 -200 1660 -200 {lab=E}
+N 1660 -290 1660 -200 {lab=E}
+N 1570 -290 1660 -290 {lab=E}
+N 1570 -330 1570 -290 {lab=E}
+N 1570 -330 1610 -330 {lab=E}
+N 1660 -200 2000 -200 {lab=E}
+N 1910 -330 2000 -330 {lab=G}
 C {my_nxor.sym} 620 -270 0 0 {name=x1}
 C {my_xor.sym} 620 -130 0 0 {name=x2}
 C {my_nand.sym} 1040 -200 0 0 {name=x3}
 C {my_nand.sym} 1230 -330 0 0 {name=x4}
-C {my_xor.sym} 1600 -500 0 0 {name=x5}
 C {my_nor.sym} 1070 -470 0 0 {name=x6}
-C {my_nor.sym} 1460 -200 0 0 {name=x7}
-C {my_nor.sym} 1760 -330 0 0 {name=x8}
 C {devices/ipin.sym} 340 -390 0 0 {name=p10 lab=VDD
 }
 C {devices/ipin.sym} 340 -290 0 0 {name=p5 lab=B1
@@ -122,7 +119,7 @@ C {devices/ipin.sym} 340 -170 0 0 {name=p2 lab=A1
 
 
 }
-C {devices/ipin.sym} 340 30 0 0 {name=p11 lab=GND
+C {devices/ipin.sym} 340 30 0 0 {name=p11 lab=VSS
 
 
 
@@ -131,9 +128,12 @@ C {devices/ipin.sym} 340 -120 0 0 {name=p12 lab=A0
 
 
 }
-C {devices/opin.sym} 2000 -500 0 0 {name=p3 lab=B
+C {devices/opin.sym} 2000 -500 0 0 {name=p3 lab=L
 }
-C {devices/opin.sym} 2000 -330 0 0 {name=p4 lab=A
+C {devices/opin.sym} 2000 -330 0 0 {name=p4 lab=G
 }
-C {devices/opin.sym} 2000 -200 0 0 {name=p6 lab=EQUAL
+C {devices/opin.sym} 2000 -200 0 0 {name=p6 lab=E
 }
+C {my_xor_2x.sym} 1600 -500 0 0 {name=x5}
+C {my_nor_2x.sym} 1760 -330 0 0 {name=x7}
+C {my_nor_2x.sym} 1460 -200 0 0 {name=x8}

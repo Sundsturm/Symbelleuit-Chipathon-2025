@@ -37,7 +37,7 @@ N 580 30 640 30 {lab=A}
 C {symbols/pfet_03v3.sym} 740 -220 0 0 {name=M2
 L=0.3u
 W=1.7u
-nf=2
+nf=4
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -51,7 +51,7 @@ spiceprefix=X
 C {symbols/pfet_03v3.sym} 740 -130 0 0 {name=M1
 L=0.3u
 W=1.7u
-nf=2
+nf=4
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -62,12 +62,12 @@ sa=0 sb=0 sd=0
 model=pfet_03v3
 spiceprefix=X
 }
-C {devices/title.sym} 350 -350 0 0 {name=l1 author="M. Yoga Putrapratama
+C {devices/title.sym} 350 -350 0 0 {name=l1 author="M. Yoga Putrapratama, Anas Fathurrahman
 "}
 C {symbols/nfet_03v3.sym} 660 30 0 0 {name=M3
 L=0.3u
 W=0.85u
-nf=1
+nf=2
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -81,7 +81,7 @@ spiceprefix=X
 C {symbols/nfet_03v3.sym} 830 30 0 0 {name=M4
 L=0.3u
 W=0.85u
-nf=1
+nf=2
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
