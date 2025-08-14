@@ -37,7 +37,7 @@ N 580 30 640 30 {lab=A}
 C {symbols/pfet_03v3.sym} 740 -220 0 0 {name=M2
 L=0.3u
 W=1.7u
-nf=4
+nf=2
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -51,7 +51,7 @@ spiceprefix=X
 C {symbols/pfet_03v3.sym} 740 -130 0 0 {name=M1
 L=0.3u
 W=1.7u
-nf=4
+nf=2
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -67,7 +67,7 @@ C {devices/title.sym} 350 -350 0 0 {name=l1 author="M. Yoga Putrapratama
 C {symbols/nfet_03v3.sym} 660 30 0 0 {name=M3
 L=0.3u
 W=0.85u
-nf=2
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -81,7 +81,7 @@ spiceprefix=X
 C {symbols/nfet_03v3.sym} 830 30 0 0 {name=M4
 L=0.3u
 W=0.85u
-nf=2
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -95,7 +95,7 @@ spiceprefix=X
 C {devices/ipin.sym} 480 -110 0 0 {name=p1 lab=A}
 C {devices/ipin.sym} 480 -70 0 0 {name=p3 lab=B}
 C {devices/iopin.sym} 760 -260 3 0 {name=p4 lab=VDD}
-C {devices/iopin.sym} 770 130 1 0 {name=p5 lab=GND
+C {devices/iopin.sym} 770 130 1 0 {name=p5 lab=VSS
 }
 C {devices/opin.sym} 890 -70 0 0 {name=p2 lab=Out
 }
