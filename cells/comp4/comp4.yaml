@@ -25,19 +25,19 @@ settings:
         slews: [0.01]
         loads: [0.001]
 cells:
-    comp4_1x:
-        netlist: 1x_drive_v2/simulation/2bit_comps_1x.sch/2bit_comps_1x.spice
-        inputs: [A1, A0, B1, B0]
-        outputs: [L, E, G]
+    2bit_comp_1x:
+        netlist: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive/simulation/2bit_comp_1x.spice
+        inputs: [A0, A1, B0, B1]
+        outputs: [L, G, E]
         functions:
             - L=~(A1 | (~(B1 ^ B0)))
-            - E=~(B0 | (~((~(B1 ^ B0)) & A0)))
             - G=~((A1 ^ A0) | (~((~(B1 ^ B0)) & A0)))
-    comp4_2x:
-        netlist: 2x_drive/simulation/2bit_comps_2x.sch/2bit_comps_2x.spice
-        inputs: [A1, A0, B1, B0]
-        outputs: [L, E, G]
+            - E=~(B0 | (~((~(B1 ^ B0)) & A0)))
+    2bit_comp_2x:
+        netlist: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/simulation/2bit_comp_2x.spice
+        inputs: [A0, A1, B0, B1]
+        outputs: [L, G, E]
         functions:
             - L=~(A1 | (~(B1 ^ B0)))
-            - E=~(B0 | (~((~(B1 ^ B0)) & A0)))
             - G=~((A1 ^ A0) | (~((~(B1 ^ B0)) & A0)))
+            - E=~(B0 | (~((~(B1 ^ B0)) & A0)))

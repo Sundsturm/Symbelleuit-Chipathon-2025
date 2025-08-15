@@ -1,0 +1,108 @@
+** sch_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/2bit_comp_2x.sch
+.subckt 2bit_comp_2x L VDD G B1 B0 E A1 A0 VSS
+*.PININFO VDD:I B1:I B0:I A1:I VSS:I A0:I L:O G:O E:O
+x1 VDD B1 net1 A1 VSS my_nxor
+x2 VDD B0 net2 A0 VSS my_xor
+x3 VDD B0 net2 net3 VSS my_nand
+x4 VDD net1 net3 net5 VSS my_nand
+x6 VDD B1 net1 net4 VSS my_nor
+x5 VDD net4 L net5 VSS my_xor_2x
+x7 VDD L E G VSS my_nor_2x
+x8 VDD net5 net2 E VSS my_nor_2x
+.ends
+
+* expanding   symbol:  my_nxor.sym # of pins=5
+** sym_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_nxor.sym
+** sch_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_nxor.sch
+.subckt my_nxor VDD A Out B VSS
+*.PININFO VDD:B VSS:B A:I B:I Out:O
+M2 net1 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M4 Out A net4 VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M1 Out B net1 VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M3 net2 net5 VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M5 Out net6 net2 VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M6 net4 net6 VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M7 Out net5 net3 VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M8 net3 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M9 net5 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M10 net6 B VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M11 net5 A VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M12 net6 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+.ends
+
+
+* expanding   symbol:  my_xor.sym # of pins=5
+** sym_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_xor.sym
+** sch_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_xor.sch
+.subckt my_xor VDD A Out B VSS
+*.PININFO VDD:B VSS:B A:I B:I Out:O
+M2 net1 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M4 Out A net4 VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M1 Out net6 net1 VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M3 net2 net5 VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M5 Out B net2 VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M6 net4 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M7 Out net5 net3 VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M8 net3 net6 VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M9 net5 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M10 net6 B VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M11 net5 A VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M12 net6 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+.ends
+
+
+* expanding   symbol:  my_nand.sym # of pins=5
+** sym_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_nand.sym
+** sch_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_nand.sch
+.subckt my_nand VDD A B Out VSS
+*.PININFO A:I Out:O B:I VDD:B VSS:B
+M1 Out A net1 VSS nfet_03v3 L=0.3u W=0.85u nf=2 m=1
+M2 Out A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M3 Out B VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M4 net1 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=2 m=1
+.ends
+
+
+* expanding   symbol:  my_nor.sym # of pins=5
+** sym_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_nor.sym
+** sch_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_nor.sch
+.subckt my_nor VDD A B Out VSS
+*.PININFO A:I B:I VDD:B VSS:B Out:O
+M2 net1 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=2 m=1
+M1 Out B net1 VDD pfet_03v3 L=0.3u W=1.7u nf=2 m=1
+M3 Out A VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M4 Out B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+.ends
+
+
+* expanding   symbol:  my_xor_2x.sym # of pins=5
+** sym_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_xor_2x.sym
+** sch_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_xor_2x.sch
+.subckt my_xor_2x VDD A Out B VSS
+*.PININFO VDD:B VSS:B A:I B:I Out:O
+M2 net1 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=2 m=1
+M4 Out A net4 VSS nfet_03v3 L=0.3u W=0.85u nf=2 m=1
+M1 Out net6 net1 VDD pfet_03v3 L=0.3u W=1.7u nf=2 m=1
+M3 net2 net5 VDD VDD pfet_03v3 L=0.3u W=1.7u nf=2 m=1
+M5 Out B net2 VDD pfet_03v3 L=0.3u W=1.7u nf=2 m=1
+M6 net4 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=2 m=1
+M7 Out net5 net3 VSS nfet_03v3 L=0.3u W=0.85u nf=2 m=1
+M8 net3 net6 VSS VSS nfet_03v3 L=0.3u W=0.85u nf=2 m=1
+M9 net5 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M10 net6 B VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 m=1
+M11 net5 A VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+M12 net6 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 m=1
+.ends
+
+
+* expanding   symbol:  my_nor_2x.sym # of pins=5
+** sym_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_nor_2x.sym
+** sch_path: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_nor_2x.sch
+.subckt my_nor_2x VDD A B Out VSS
+*.PININFO A:I B:I VDD:B VSS:B Out:O
+M2 net1 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=4 m=1
+M1 Out B net1 VDD pfet_03v3 L=0.3u W=1.7u nf=4 m=1
+M3 Out A VSS VSS nfet_03v3 L=0.3u W=0.85u nf=2 m=1
+M4 Out B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=2 m=1
+.ends
+
