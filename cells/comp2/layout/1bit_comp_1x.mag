@@ -1,0 +1,24 @@
+magic
+tech gf180mcuD
+timestamp 1755265647
+use gf180mcu_osu_sc_gp9t3v3__and2_1  gf180mcu_osu_sc_gp9t3v3__and2_1_0
+timestamp 1677456509
+transform 1 0 88 0 1 0
+box 0 0 82 127
+use gf180mcu_osu_sc_gp9t3v3__and2_1  gf180mcu_osu_sc_gp9t3v3__and2_1_1
+timestamp 1677456509
+transform 1 0 170 0 1 0
+box 0 0 82 127
+use gf180mcu_osu_sc_gp9t3v3__inv_1  gf180mcu_osu_sc_gp9t3v3__inv_1_0
+timestamp 1677450526
+transform 1 0 0 0 1 0
+box 0 0 44 127
+use gf180mcu_osu_sc_gp9t3v3__inv_1  gf180mcu_osu_sc_gp9t3v3__inv_1_1
+timestamp 1677450526
+transform 1 0 44 0 1 0
+box 0 0 44 127
+use gf180mcu_osu_sc_gp9t3v3__xnor2_1  gf180mcu_osu_sc_gp9t3v3__xnor2_1_0
+timestamp 1677452172
+transform 1 0 252 0 1 0
+box 0 0 128 127
+<< end >>
