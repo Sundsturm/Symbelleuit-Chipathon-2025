@@ -1,6 +1,6 @@
 settings:
     lib_name:        analysis_comp4
-    results_dir:     lib
+    results_dir:     prelayout_lib
     omit_on_failure: True
     named_nodes:
         vdd:
@@ -27,17 +27,17 @@ settings:
 cells:
     2bit_comp_1x:
         netlist: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive/simulation/2bit_comp_1x.spice
-        inputs: [A0, A1, B0, B1]
+        inputs: [B1, B0, A1, A0]
         outputs: [L, G, E]
         functions:
-            - L=~(A1 | (~(B1 ^ B0)))
-            - G=~((A1 ^ A0) | (~((~(B1 ^ B0)) & A0)))
-            - E=~(B0 | (~((~(B1 ^ B0)) & A0)))
+            - L=((!(B1 | (!(B1 ^ A1)))) ^ (!((!(B1 ^ A1)) & (!(B0 & (B0 ^ A0))))))
+            - G=!(((!(B1 | (!(B1 ^ A1)))) ^ (!((!(B1 ^ A1)) & (!(B0 & (B0 ^ A0)))))) | !((!((!(B1 ^ A1)) & (!(B0 & (B0 ^ A0))))) | (B0 ^ A0)))
+            - E=!((!((!(B1 ^ A1)) & (!(B0 & (B0 ^ A0))))) | (B0 ^ A0))
     2bit_comp_2x:
         netlist: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/simulation/2bit_comp_2x.spice
-        inputs: [A0, A1, B0, B1]
+        inputs: [B1, B0, A1, A0]
         outputs: [L, G, E]
         functions:
-            - L=~(A1 | (~(B1 ^ B0)))
-            - G=~((A1 ^ A0) | (~((~(B1 ^ B0)) & A0)))
-            - E=~(B0 | (~((~(B1 ^ B0)) & A0)))
+            - L=((!(B1 | (!(B1 ^ A1)))) ^ (!((!(B1 ^ A1)) & (!(B0 & (B0 ^ A0))))))
+            - G=!(((!(B1 | (!(B1 ^ A1)))) ^ (!((!(B1 ^ A1)) & (!(B0 & (B0 ^ A0)))))) | !((!((!(B1 ^ A1)) & (!(B0 & (B0 ^ A0))))) | (B0 ^ A0)))
+            - E=!((!((!(B1 ^ A1)) & (!(B0 & (B0 ^ A0))))) | (B0 ^ A0))

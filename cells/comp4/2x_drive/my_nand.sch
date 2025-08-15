@@ -1,8 +1,9 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
 S {}
+F {}
 E {}
 N 420 -140 420 -90 {lab=Out}
 N 420 -90 530 -90 {lab=Out}
@@ -14,11 +15,11 @@ N 420 -240 520 -240 {lab=VDD}
 N 600 -240 600 -200 {lab=VDD}
 N 520 -240 600 -240 {lab=VDD}
 N 530 30 530 60 {lab=#net1}
-N 530 120 530 160 {lab=GND}
-N 530 90 530 120 {lab=GND}
-N 530 -0 640 0 {lab=GND}
-N 640 0 640 120 {lab=GND}
-N 530 120 640 120 {lab=GND}
+N 530 120 530 160 {lab=VSS}
+N 530 90 530 120 {lab=VSS}
+N 530 -0 640 0 {lab=VSS}
+N 640 0 640 120 {lab=VSS}
+N 530 120 640 120 {lab=VSS}
 N 420 -200 420 -170 {lab=VDD}
 N 600 -200 600 -170 {lab=VDD}
 N 260 -120 380 -120 {lab=A}
@@ -34,7 +35,7 @@ N 530 -50 620 -50 {lab=Out}
 C {symbols/nfet_03v3.sym} 510 0 0 0 {name=M1
 L=0.3u
 W=0.85u
-nf=2
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -81,7 +82,7 @@ spiceprefix=X
 C {symbols/nfet_03v3.sym} 510 90 0 0 {name=M4
 L=0.3u
 W=0.85u
-nf=2
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"

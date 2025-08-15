@@ -1,8 +1,9 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
 S {}
+F {}
 E {}
 N 680 -50 680 -0 {lab=Out}
 N 850 -50 850 -0 {lab=Out}
@@ -16,12 +17,12 @@ N 760 -130 840 -130 {lab=VDD}
 N 840 -250 840 -130 {lab=VDD}
 N 840 -260 840 -250 {lab=VDD}
 N 760 -260 840 -260 {lab=VDD}
-N 680 60 680 120 {lab=GND}
-N 680 120 850 120 {lab=GND}
-N 850 60 850 120 {lab=GND}
-N 770 120 770 130 {lab=GND}
-N 680 30 680 60 {lab=GND}
-N 850 30 850 60 {lab=GND}
+N 680 60 680 120 {lab=VSS}
+N 680 120 850 120 {lab=VSS}
+N 850 60 850 120 {lab=VSS}
+N 770 120 770 130 {lab=VSS}
+N 680 30 680 60 {lab=VSS}
+N 850 30 850 60 {lab=VSS}
 N 480 -110 630 -110 {lab=A}
 N 630 -220 630 -110 {lab=A}
 N 630 -220 720 -220 {lab=A}
@@ -37,7 +38,7 @@ N 580 30 640 30 {lab=A}
 C {symbols/pfet_03v3.sym} 740 -220 0 0 {name=M2
 L=0.3u
 W=1.7u
-nf=2
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -51,7 +52,7 @@ spiceprefix=X
 C {symbols/pfet_03v3.sym} 740 -130 0 0 {name=M1
 L=0.3u
 W=1.7u
-nf=2
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"

@@ -1,8 +1,9 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
 S {}
+F {}
 E {}
 N 270 100 270 120 {lab=VDD}
 N 270 100 540 100 {lab=VDD}
@@ -22,17 +23,17 @@ N 270 290 540 290 {lab=Out}
 N 540 260 540 290 {lab=Out}
 N 270 290 270 330 {lab=Out}
 N 540 290 540 330 {lab=Out}
-N 270 480 270 500 {lab=GND}
-N 270 500 540 500 {lab=GND}
-N 540 480 540 500 {lab=GND}
-N 400 500 400 510 {lab=GND}
-N 270 450 270 480 {lab=GND}
-N 540 450 540 480 {lab=GND}
-N 270 360 380 360 {lab=GND}
-N 380 360 380 500 {lab=GND}
-N 440 360 540 360 {lab=GND}
-N 430 360 440 360 {lab=GND}
-N 430 360 430 500 {lab=GND}
+N 270 480 270 500 {lab=VSS}
+N 270 500 540 500 {lab=VSS}
+N 540 480 540 500 {lab=VSS}
+N 400 500 400 510 {lab=VSS}
+N 270 450 270 480 {lab=VSS}
+N 540 450 540 480 {lab=VSS}
+N 270 360 380 360 {lab=VSS}
+N 380 360 380 500 {lab=VSS}
+N 440 360 540 360 {lab=VSS}
+N 430 360 440 360 {lab=VSS}
+N 430 360 430 500 {lab=VSS}
 N 540 390 540 420 {lab=#net3}
 N 270 390 270 420 {lab=#net4}
 N 40 190 40 210 {lab=#net5}
@@ -43,13 +44,13 @@ N -40 200 -30 200 {lab=A}
 N 40 100 40 130 {lab=VDD}
 N 40 100 270 100 {lab=VDD}
 N 40 130 40 160 {lab=VDD}
-N 40 240 40 270 {lab=GND}
-N -10 440 -10 470 {lab=GND}
-N 40 470 40 500 {lab=GND}
-N 40 500 270 500 {lab=GND}
-N 40 270 40 470 {lab=GND}
-N -10 470 -10 500 {lab=GND}
-N -10 500 50 500 {lab=GND}
+N 40 240 40 270 {lab=VSS}
+N -10 440 -10 470 {lab=VSS}
+N 40 470 40 500 {lab=VSS}
+N 40 500 270 500 {lab=VSS}
+N 40 270 40 470 {lab=VSS}
+N -10 470 -10 500 {lab=VSS}
+N -10 500 50 500 {lab=VSS}
 N -10 100 -10 330 {lab=VDD}
 N -10 100 40 100 {lab=VDD}
 N -70 360 -50 360 {lab=B}
@@ -91,7 +92,7 @@ C {devices/title.sym} 0 -40 0 0 {name=l1 author="M. Yoga Putrapratama, Anas Fath
 C {symbols/pfet_03v3.sym} 250 150 0 0 {name=M2
 L=0.3u
 W=1.7u
-nf=2
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -105,7 +106,7 @@ spiceprefix=X
 C {symbols/nfet_03v3.sym} 250 360 0 0 {name=M4
 L=0.3u
 W=0.85u
-nf=2
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -119,7 +120,7 @@ spiceprefix=X
 C {symbols/pfet_03v3.sym} 250 230 0 0 {name=M1
 L=0.3u
 W=1.7u
-nf=2
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -161,7 +162,7 @@ spiceprefix=X
 C {symbols/nfet_03v3.sym} 250 450 0 0 {name=M6
 L=0.3u
 W=0.85u
-nf=2
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
