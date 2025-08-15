@@ -1,4 +1,5 @@
-PDK_ROOT=/foss/pdks
-PDK=gf180mcuD
-PDKPATH=/foss/pdks/ciel/gf180mcu/versions/f2e289da6753f26157a308c492cf990fdcd4932d/gf180mcuD
-STD_CELL_LIBRARY=gf180mcu_osu_sc_gp9t3v3
+export PDK=gf180mcuD
+export PDKPATH=$PDK_ROOT/ciel/gf180mcu/versions/f2e289da6753f26157a308c492cf990fdcd4932d/gf180mcuD
+export STD_CELL_LIBRARY=gf180mcu_osu_sc_gp9t3v3
+export SPICE_USERINIT_DIR=$PDKPATH/libs.tech/ngspice
+export KLAYOUT_PATH=$PDKPATH/libs.tech/klayout:$PDKPATH/libs.tech/klayout/tech
