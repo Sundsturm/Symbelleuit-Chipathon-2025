@@ -10,14 +10,19 @@ VVSS VSS 0 DC 0V
 * A = A1 A0
 * B = B1 B0
 
+* Load
+CLL L VSS 1f
+CLE E VSS 1f
+CLG G VSS 1f
+
 * LSB, period 20ns
-VA0 A0 VSS PULSE(0 3.3 0 0.1n 0.1n 10n 20n)   
+VA0 A0 VSS PULSE(0 3.3 0 0.01n 0.01n 10n 20n)   
 * Period 40ns
-VA1 A1 VSS PULSE(0 3.3 0 0.1n 0.1n 20n 40n)
+VA1 A1 VSS PULSE(0 3.3 0 0.01n 0.01n 20n 40n)
 * Period 80ns
-VB0 B0 VSS PULSE(0 3.3 0 0.1n 0.1n 40n 80n)   
+VB0 B0 VSS PULSE(0 3.3 0 0.01n 0.01n 40n 80n)   
 * MSB, period 160ns
-VB1 B1 VSS PULSE(0 3.3 0 0.1n 0.1n 80n 160n) 
+VB1 B1 VSS PULSE(0 3.3 0 0.01n 0.01n 80n 160n) 
 
 * Device Under Test (DUT) instantiation
 * Subcircuit definition pin order from user file: L, VDD, G, B1, B0, E, A1, A0, VSS
@@ -26,7 +31,7 @@ Xdut L VDD G B1 B0 E A1 A0 VSS 2bit_comp_1x
 * Simulation commands
 .control
 run
-tran 0.1n 320n
+tran 1p 320n
 let B1_plot = v(B1) + 24
 let B0_plot = v(B0) + 20
 let A1_plot = v(A1) + 16
@@ -141,13 +146,13 @@ XM12 net6 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.1
 *.ipin B
 *.iopin VDD
 *.iopin VSS
-XM1 Out A net1 VSS nfet_03v3 L=0.3u W=0.85u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM1 Out A net1 VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM2 Out A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM3 Out B VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM4 net1 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM4 net1 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 .ends
 
@@ -161,9 +166,9 @@ XM4 net1 B VSS VSS nfet_03v3 L=0.3u W=0.85u nf=2 ad='int((nf+1)/2) * W/nf * 0.18
 *.iopin VDD
 *.iopin VSS
 *.opin Out
-XM2 net1 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM2 net1 A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
-XM1 Out B net1 VDD pfet_03v3 L=0.3u W=1.7u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM1 Out B net1 VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
 XM3 Out A VSS VSS nfet_03v3 L=0.3u W=0.85u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
