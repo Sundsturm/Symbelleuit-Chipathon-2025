@@ -1,6 +1,6 @@
 magic
 tech gf180mcuC
-timestamp 1755575282
+timestamp 1755577130
 << nwell >>
 rect -19 63 78 127
 << nmos >>
@@ -80,12 +80,11 @@ rect 2 106 8 111
 rect 19 106 25 111
 rect 36 106 42 111
 rect 53 106 59 111
-rect 2 67 8 72
-rect 19 67 25 72
-rect 2 61 25 67
-rect 19 54 25 61
-rect 11 52 25 54
-rect 11 46 14 52
+rect 2 54 8 72
+rect 19 54 25 72
+rect 2 52 25 54
+rect 2 48 14 52
+rect 11 46 14 48
 rect 20 46 25 52
 rect 11 44 25 46
 rect 19 43 25 44
