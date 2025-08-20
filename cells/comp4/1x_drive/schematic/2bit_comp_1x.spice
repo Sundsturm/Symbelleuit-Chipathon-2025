@@ -1,14 +1,14 @@
 ** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive_v2/2bit_comp_1x.sch
-**.subckt 2bit_comp_1x L VDD G B1 B0 E A1 A0 VSS
-*.ipin VDD
-*.ipin B1
-*.ipin B0
-*.ipin A1
-*.ipin VSS
-*.ipin A0
-*.opin L
-*.opin G
-*.opin E
+.subckt 2bit_comp_1x L VDD G B1 B0 E A1 A0 VSS
+.ipin VDD
+.ipin B1
+.ipin B0
+.ipin A1
+.ipin VSS
+.ipin A0
+.opin L
+.opin G
+.opin E
 x1 VDD B1 net1 A1 VSS my_nxor
 x2 VDD B0 net2 A0 VSS my_xor
 x3 VDD B0 net2 net3 VSS my_nand
@@ -17,7 +17,7 @@ x5 VDD net4 L net5 VSS my_xor
 x6 VDD B1 net1 net4 VSS my_nor
 x7 VDD net5 net2 E VSS my_nor
 x8 VDD L E G VSS my_nor
-**.ends
+.ends
 
 * expanding   symbol:  my_nxor.sym # of pins=5
 ** sym_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp4/1x_drive_v2/my_nxor.sym
