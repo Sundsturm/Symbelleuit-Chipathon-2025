@@ -1,6 +1,6 @@
 magic
 tech gf180mcuD
-timestamp 1755595969
+timestamp 1755678562
 << nwell >>
 rect 0 63 392 127
 rect 0 -99 392 -49
@@ -1503,15 +1503,25 @@ rlabel via1 171 -35 171 -35 1 my_nand_1.A
 rlabel via1 199 -48 199 -48 1 my_nand_1.B
 rlabel via1 185 -61 185 -61 1 my_nand_1.Y
 rlabel metal1 3 -106 3 -106 1 VDD
+port 1 n power default
 rlabel metal1 4 121 4 121 1 VDD
+port 1 n power default
 rlabel metal1 4 7 4 7 1 VSS
+port 2 n ground default
 rlabel via1 30 47 30 47 1 B1
+port 5 n signal default
 rlabel via1 96 47 96 47 1 A1
+port 6 n signal default
 rlabel via1 45 -34 45 -34 1 B0
+port 3 n signal default
 rlabel via1 125 -34 125 -34 1 A0
+port 4 n signal default
 rlabel via1 147 49 147 49 1 my_nor_0.B
 rlabel via1 175 62 175 62 1 my_nor_0.A
 rlabel via1 324 87 324 87 1 L
+port 7 n signal default
 rlabel via1 328 -63 328 -63 1 G
+port 8 n signal default
 rlabel via1 249 -63 249 -63 1 E
+port 9 n signal default
 << end >>
