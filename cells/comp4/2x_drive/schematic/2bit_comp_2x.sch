@@ -1,9 +1,8 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
 S {}
-F {}
 E {}
 N 340 -390 800 -390 {lab=VDD}
 N 800 -390 800 -290 {lab=VDD}
@@ -143,6 +142,6 @@ C {devices/opin.sym} 2000 -330 0 0 {name=p4 lab=G
 }
 C {devices/opin.sym} 2000 -200 0 0 {name=p6 lab=E
 }
-C {/foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_nor_2x.sym} 1760 -330 0 0 {name=x5}
-C {/foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_nor_2x.sym} 1460 -200 0 0 {name=x7}
-C {/foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp4/2x_drive/my_xor_2x.sym} 1600 -500 0 0 {name=x8}
+C {my_xor_2x.sym} 1600 -500 0 0 {name=x9}
+C {my_nor_2x.sym} 1760 -330 0 0 {name=x5}
+C {my_nor_2x.sym} 1460 -200 0 0 {name=x7}

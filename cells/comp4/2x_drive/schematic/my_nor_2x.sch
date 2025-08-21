@@ -1,9 +1,8 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
 S {}
-F {}
 E {}
 N 680 -50 680 -0 {lab=Out}
 N 850 -50 850 -0 {lab=Out}
@@ -38,7 +37,7 @@ N 580 30 640 30 {lab=A}
 C {symbols/pfet_03v3.sym} 740 -220 0 0 {name=M2
 L=0.3u
 W=1.7u
-nf=2
+nf=4
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -52,7 +51,7 @@ spiceprefix=X
 C {symbols/pfet_03v3.sym} 740 -130 0 0 {name=M1
 L=0.3u
 W=1.7u
-nf=2
+nf=4
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
