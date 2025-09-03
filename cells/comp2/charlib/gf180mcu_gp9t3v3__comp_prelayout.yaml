@@ -1,0 +1,43 @@
+settings:
+    lib_name:        gf180mcu_gp9t3v3_comp2_1_prelayout
+    results_dir:     lib
+    omit_on_failure: True
+    named_nodes:
+        vdd:
+            name:    VDD
+            voltage: 3.3
+        vss:
+            name:    VSS
+            voltage: 0
+    units:
+        # Specify all units for clarity, even though only resistance differs from the default
+        time:               ns
+        voltage:            V
+        current:            uA
+        pulling_resistance: kOhm
+        leakage_power:      nW
+        capacitive_load:    pF
+        energy:             fJ
+    cell_defaults:
+        models:
+            - /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+            - /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+        slews: [0.0706, 0.1903, 0.5123, 1.3794, 3.7140, 10]
+        loads: [0.0013, 0.0048, 0.0172, 0.0616, 0.2206, 0.7901]
+cells:
+    gf180mcu_gp9t3v3__comp2_1:
+        netlist: ../schematic/simulation/gf180mcu_gp9t3v3__comp2_1.sch/gf180mcu_gp9t3v3__comp2_1.spice
+        inputs: [A, B]
+        outputs: [L, E, G]
+        functions:
+            - L=(!A)&B
+            - E=!(A^B)
+            - G=A&(!B)
+    gf180mcu_gp9t3v3__comp2_2:
+        netlist: ../schematic/simulation/gf180mcu_gp9t3v3__comp2_2.sch/gf180mcu_gp9t3v3__comp2_2.spice
+        inputs: [A, B]
+        outputs: [L, E, G]
+        functions:
+            - L=(!A)&B
+            - E=!(A^B)
+            - G=A&(!B)
