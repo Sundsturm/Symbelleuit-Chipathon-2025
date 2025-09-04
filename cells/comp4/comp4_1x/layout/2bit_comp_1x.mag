@@ -1,6 +1,6 @@
 magic
 tech gf180mcuD
-timestamp 1755688929
+timestamp 1756986822
 << nwell >>
 rect 0 63 392 127
 rect 0 -99 392 -49
@@ -1098,8 +1098,7 @@ rect 268 4 308 10
 rect 313 4 342 10
 rect 347 4 372 10
 rect 377 4 392 10
-rect 0 1 392 4
-rect 1 0 392 1
+rect 0 0 392 4
 rect 29 -9 34 -7
 rect 29 -48 34 -22
 rect 46 -9 51 0
