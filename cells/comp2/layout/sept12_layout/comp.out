@@ -1,0 +1,39 @@
+
+Cell pfet_03v3 (1) disconnected node: drain
+Cell pfet_03v3 (1) disconnected node: gate
+Cell pfet_03v3 (1) disconnected node: source
+Cell pfet_03v3 (1) disconnected node: bulk
+Warning: Equate pins:  cell pfet_03v3 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: pfet_03v3                       |Circuit 2: pfet_03v3                       
+-------------------------------------------|-------------------------------------------
+(no matching pin)                          |drain                                      
+(no matching pin)                          |gate                                       
+(no matching pin)                          |source                                     
+(no matching pin)                          |bulk                                       
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes pfet_03v3 and pfet_03v3 are equivalent.
+
+Cell nfet_03v3 (1) disconnected node: drain
+Cell nfet_03v3 (1) disconnected node: gate
+Cell nfet_03v3 (1) disconnected node: source
+Cell nfet_03v3 (1) disconnected node: bulk
+Warning: Equate pins:  cell nfet_03v3 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: nfet_03v3                       |Circuit 2: nfet_03v3                       
+-------------------------------------------|-------------------------------------------
+(no matching pin)                          |drain                                      
+(no matching pin)                          |gate                                       
+(no matching pin)                          |source                                     
+(no matching pin)                          |bulk                                       
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes nfet_03v3 and nfet_03v3 are equivalent.
+
+Cells have no pins;  pin matching not needed.
+Device classes gf180mcu_gp9t3v3__comp2_1.spice and ./simulation/gf180mcu_gp9t3v3__comp2_1.spice are equivalent.
+
+Final result: Verify:  cell ./simulation/gf180mcu_gp9t3v3__comp2_1.spice has no elements and/or nodes.  Not checked.
