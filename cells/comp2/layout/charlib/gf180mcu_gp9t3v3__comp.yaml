@@ -1,6 +1,6 @@
 settings:
-    lib_name:        gf180mcu_gp9t3v3_comp2_1
-    results_dir:     lib
+    lib_name:        gf180mcu_gp9t3v3_comp2
+    result_dir:      ..
     omit_on_failure: True
     named_nodes:
         vdd:

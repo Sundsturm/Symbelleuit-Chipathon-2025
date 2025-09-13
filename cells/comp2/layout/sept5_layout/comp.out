@@ -1,0 +1,5 @@
+
+Cells have no pins;  pin matching not needed.
+Device classes gf180mcu_gp9t3v3__comp2_1.spice and ../sept12_layout/simulation/gf180mcu_gp9t3v3__comp2_1.spice are equivalent.
+
+Final result: Verify:  cell ../sept12_layout/simulation/gf180mcu_gp9t3v3__comp2_1.spice has no elements and/or nodes.  Not checked.

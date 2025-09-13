@@ -1,0 +1,53 @@
+
+Circuit 1 cell pfet_03v3 and Circuit 2 cell pfet_03v3 are black boxes.
+
+Subcircuit pins:
+Circuit 1: pfet_03v3                       |Circuit 2: pfet_03v3                       
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes pfet_03v3 and pfet_03v3 are equivalent.
+
+Circuit 1 cell nfet_03v3 and Circuit 2 cell nfet_03v3 are black boxes.
+
+Subcircuit pins:
+Circuit 1: nfet_03v3                       |Circuit 2: nfet_03v3                       
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes nfet_03v3 and nfet_03v3 are equivalent.
+
+Subcircuit summary:
+Circuit 1: gf180mcu_gp9t3v3__comp2_1       |Circuit 2: gf180mcu_gp9t3v3__comp2_1       
+-------------------------------------------|-------------------------------------------
+pfet_03v3 (12)                             |pfet_03v3 (12)                             
+nfet_03v3 (12)                             |nfet_03v3 (12)                             
+Number of devices: 24                      |Number of devices: 24                      
+Number of nets: 16                         |Number of nets: 16                         
+---------------------------------------------------------------------------------------
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: gf180mcu_gp9t3v3__comp2_1       |Circuit 2: gf180mcu_gp9t3v3__comp2_1       
+-------------------------------------------|-------------------------------------------
+E                                          |E                                          
+L                                          |L                                          
+G                                          |G                                          
+VSS                                        |VSS                                        
+B                                          |B                                          
+A                                          |A                                          
+VDD                                        |VDD                                        
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes gf180mcu_gp9t3v3__comp2_1 and gf180mcu_gp9t3v3__comp2_1 are equivalent.
+
+Final result: Circuits match uniquely.
+.
