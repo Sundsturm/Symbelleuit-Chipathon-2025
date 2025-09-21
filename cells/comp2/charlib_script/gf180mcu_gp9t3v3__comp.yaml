@@ -1,6 +1,6 @@
 settings:
-    lib_name:        gf180mcu_gp9t3v3_comp2_1_prelayout
-    results_dir:     lib
+    lib_name:        gf180mcu_gp9t3v3_comp2
+    results_dir:     ../lib
     omit_on_failure: True
     named_nodes:
         vdd:
@@ -26,7 +26,7 @@ settings:
         loads: [0.0013, 0.0048, 0.0172, 0.0616, 0.2206, 0.7901]
 cells:
     gf180mcu_gp9t3v3__comp2_1:
-        netlist: ../schematic/simulation/gf180mcu_gp9t3v3__comp2_1.sch/gf180mcu_gp9t3v3__comp2_1.spice
+        netlist: ../comp2_1/gf180mcu_gp9t3v3__comp2_1.spice
         inputs: [A, B]
         outputs: [L, E, G]
         functions:
@@ -34,7 +34,7 @@ cells:
             - E=!(A^B)
             - G=A&(!B)
     gf180mcu_gp9t3v3__comp2_2:
-        netlist: ../schematic/simulation/gf180mcu_gp9t3v3__comp2_2.sch/gf180mcu_gp9t3v3__comp2_2.spice
+        netlist: ../comp2_2/gf180mcu_gp9t3v3__comp2_2.spice
         inputs: [A, B]
         outputs: [L, E, G]
         functions:

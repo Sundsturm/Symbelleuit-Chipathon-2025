@@ -1,4 +1,4 @@
-library (gf180mcu_gp9t3v3_comp2_1) {
+library (gf180mcu_gp9t3v3_comp2) {
   technology : cmos;
   delay_model : table_lookup;
   bus_naming_style : "%s-%d";
