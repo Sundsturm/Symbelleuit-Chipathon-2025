@@ -1,0 +1,5 @@
+01-Oct-2025 15:44:32 | INFO    | Your Klayout version is: KLayout 0.30.2
+01-Oct-2025 15:44:32 | INFO    | ## Generating template with for the following rule tables: ['nplus.drc']
+01-Oct-2025 15:44:32 | INFO    | ## Your run dir located at: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/lvs
+01-Oct-2025 15:44:32 | INFO    | Running Global Foundries 180nm MCU /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/layout/gf180mcu_gp9t3v3__comp2_2.gds checks on design nplus on cell gf180mcu_gp9t3v3__comp2_2:
+01-Oct-2025 15:44:35 | INFO    | Klayout DRC run is clean. GDS has no DRC violations.
