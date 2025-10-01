@@ -29,4 +29,4 @@ C {lab_pin.sym} -120 -50 3 0 {name=p4 sig_type=std_logic lab=GND}
 C {lab_pin.sym} -70 -150 2 0 {name=p5 sig_type=std_logic lab=L}
 C {lab_pin.sym} -70 -130 2 0 {name=p6 sig_type=std_logic lab=E}
 C {lab_pin.sym} -70 -110 2 0 {name=p7 sig_type=std_logic lab=G}
-C {/foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/schematic/gf180mcu_gp9t3v3__comp2_1.sym} -120 -130 0 0 {name=x1}
+C {/foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/schematics/gf180mcu_gp9t3v3__comp2_1.sym} -120 -130 0 0 {name=x1}
