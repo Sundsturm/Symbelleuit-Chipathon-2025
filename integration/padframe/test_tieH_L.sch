@@ -5,15 +5,15 @@ V {}
 S {}
 E {}
 B 2 1200 -440 1790 20 {flags=graph
-y1=-30.547443
-y2=20.010549
+y1=-20.435845
+y2=30.122147
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=5e-09
-x2=1.05e-07
+x1=-1.0269385e-10
+x2=9.9897287e-08
 divx=5
 subdivx=1
 
@@ -89,7 +89,8 @@ format="tcleval( @value )"
 value="
 .include $::180MCU_MODELS/design.ngspice
 .lib $::180MCU_MODELS/sm141064.ngspice typical
-"}
+"
+spice_ignore=true}
 C {devices/lab_pin.sym} 690 50 0 0 {name=l3 sig_type=std_logic lab=S}
 C {devices/code_shown.sym} 140 -480 0 0 {name=NGSPICE only_toplevel=true
 value="
@@ -191,3 +192,9 @@ spice_ignore=true}
 C {devices/lab_pin.sym} 1130 -50 0 1 {name=l7 sig_type=std_logic lab=Z_2}
 C {devices/lab_pin.sym} 600 -90 0 0 {name=l2 sig_type=std_logic lab=G}
 C {devices/lab_pin.sym} 920 -80 0 0 {name=l8 sig_type=std_logic lab=G2}
+C {devices/code_shown.sym} -60 0 0 0 {name=MODELS1 only_toplevel=true
+format="tcleval( @value )"
+value="
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+"}
