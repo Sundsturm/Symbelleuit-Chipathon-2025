@@ -1,8 +1,9 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
 S {}
+F {}
 E {}
 N 50 -140 50 -100 {lab=GND}
 N 150 -140 150 -100 {lab=GND}
@@ -54,10 +55,6 @@ plot V(PAD)+12 V(ASIG)+6 V(to_gate)
 "}
 C {vsource.sym} 450 -170 0 0 {name=V5 value="PWL(0 -10 500n 10 1u -10)" savecurrent=false}
 C {lab_wire.sym} 450 -240 0 0 {name=p8 sig_type=std_logic lab=PAD}
-C {Chipathon2025_pads/xschem/symbols/io_asig_5p0.sym} 520 -350 0 1 {name=IO1
-model=gf180mcu_fd_io__asig_5p0_extracted
-spiceprefix=X
-}
 C {lab_wire.sym} 440 -510 0 1 {name=p10 sig_type=std_logic lab=DVDD}
 C {lab_wire.sym} 440 -350 0 1 {name=p11 sig_type=std_logic lab=DVSS}
 C {lab_wire.sym} 400 -510 0 0 {name=p12 sig_type=std_logic lab=VDD}
@@ -67,6 +64,10 @@ C {lab_wire.sym} 170 -510 0 0 {name=p15 sig_type=std_logic lab=VDD}
 C {devices/lab_wire.sym} 60 -430 0 0 {name=p16 sig_type=std_logic lab=to_gate}
 C {devices/lab_wire.sym} 310 -430 0 0 {name=p17 sig_type=std_logic lab=asig}
 C {devices/lab_wire.sym} 550 -430 0 1 {name=p18 sig_type=std_logic lab=PAD}
-C {Chipathon2025_pads/xschem/symbols/io_secondary_3p3/io_secondary_3p3.sym} 90 -350 0 0 {name=IO2
+C {symbols/io_secondary_3p3/io_secondary_3p3.sym} 90 -350 0 0 {name=IO3
+spiceprefix=X
+}
+C {symbols/io_asig_5p0.sym} 320 -350 0 0 {name=IO2
+model=gf180mcu_fd_io__asig_5p0_extracted
 spiceprefix=X
 }
