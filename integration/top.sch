@@ -19,6 +19,9 @@ K {}
 V {}
 S {}
 E {}
+T {Symbelleuit} 210 1140 0 0 1 1 {}
+T {Symbelleuit} 1740 1160 0 0 1 1 {}
+T {Nawiatsob} 4850 1080 0 0 1 1 {}
 N 720 680 820 680 {lab=#net1}
 N 820 680 820 1070 {lab=#net1}
 N 820 1070 950 1070 {lab=#net1}
@@ -96,6 +99,60 @@ N 2230 720 2230 740 {lab=VSS}
 N 1840 930 1840 950 {lab=VSS}
 N 1840 630 1840 640 {lab=VSS}
 N 1800 640 1840 640 {lab=VSS}
+N 4410 220 4530 220 {lab=#net11}
+N 4100 280 4150 280 {lab=B}
+N 4230 400 4270 400 {lab=VSS}
+N 4230 140 4270 140 {lab=VDD}
+N 4250 400 4250 420 {lab=VSS}
+N 4410 570 4530 570 {lab=#net12}
+N 4100 630 4150 630 {lab=B}
+N 4230 750 4270 750 {lab=VSS}
+N 4230 490 4270 490 {lab=VDD}
+N 4250 750 4250 770 {lab=VSS}
+N 4410 930 4530 930 {lab=#net13}
+N 4100 990 4150 990 {lab=B}
+N 4230 1110 4270 1110 {lab=VSS}
+N 4230 850 4270 850 {lab=VDD}
+N 4250 1110 4250 1130 {lab=VSS}
+N 4410 -120 4530 -120 {lab=#net14}
+N 4100 -60 4150 -60 {lab=B}
+N 4230 60 4270 60 {lab=VSS}
+N 4230 -200 4270 -200 {lab=VDD}
+N 4250 60 4250 80 {lab=VSS}
+N 4410 1270 4530 1270 {lab=#net15}
+N 4100 1330 4150 1330 {lab=B}
+N 4230 1450 4270 1450 {lab=VSS}
+N 4230 1190 4270 1190 {lab=VDD}
+N 4250 1450 4250 1470 {lab=VSS}
+N 4410 1590 4530 1590 {lab=#net16}
+N 4100 1650 4150 1650 {lab=B}
+N 4230 1770 4270 1770 {lab=VSS}
+N 4230 1510 4270 1510 {lab=VDD}
+N 4250 1770 4250 1790 {lab=VSS}
+N 4530 -120 4740 -120 {lab=#net14}
+N 4740 -120 4740 740 {lab=#net14}
+N 4740 740 4760 740 {lab=#net14}
+N 4530 1590 4740 1590 {lab=#net16}
+N 4740 840 4740 1590 {lab=#net16}
+N 4740 840 4760 840 {lab=#net16}
+N 4530 220 4720 220 {lab=#net11}
+N 4720 220 4720 760 {lab=#net11}
+N 4720 760 4760 760 {lab=#net11}
+N 4530 1270 4720 1270 {lab=#net15}
+N 4720 820 4720 1270 {lab=#net15}
+N 4720 820 4760 820 {lab=#net15}
+N 4530 570 4700 570 {lab=#net12}
+N 4700 570 4700 780 {lab=#net12}
+N 4700 780 4760 780 {lab=#net12}
+N 4530 930 4700 930 {lab=#net13}
+N 4700 800 4700 930 {lab=#net13}
+N 4700 800 4760 800 {lab=#net13}
+N 5570 810 5650 810 {lab=L}
+N 5450 930 5490 930 {lab=VSS}
+N 5450 670 5490 670 {lab=VDD}
+N 5060 780 5240 780 {lab=#net17}
+N 5240 780 5240 850 {lab=#net17}
+N 5240 850 5310 850 {lab=#net17}
 C {devices/title.sym} 160 -30 0 0 {name=l5 author="Integration Padframe"}
 C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 180 950 0 0 {name=IO1
 model=gf180mcu_fd_io__bi_t
@@ -271,3 +328,102 @@ C {devices/lab_pin.sym} 2000 430 0 1 {name=p91 sig_type=std_logic lab=L}
 C {devices/lab_pin.sym} 2000 770 0 1 {name=p92 sig_type=std_logic lab=L}
 C {devices/lab_pin.sym} 2000 790 0 1 {name=p93 sig_type=std_logic lab=H}
 C {cells/D17_Symbelleuit/gf180mcu_gp9t3v3__comp2_1.sym} 2230 640 0 0 {name=x3}
+C {cells/D15_SILICON/gf180mcu_osu_sc_gp12t3v3__and3_1.sym} 650 1710 0 0 {name=x4}
+C {cells/D15_SILICON/gf180mcu_osu_sc_gp12t3v3__nand3_1.sym} 2250 1710 0 0 {name=x5}
+C {cells/D15_SILICON/gf180mcu_osu_sc_gp12t3v3__nor3_1.sym} 650 2600 0 0 {name=x6}
+C {cells/D15_SILICON/gf180mcu_osu_sc_gp9t3v3__and3_2.sym} 2270 2600 0 0 {name=x7}
+C {cells/D15_SILICON/gf180mcu_osu_sc_gp9t3v3__or3_1.sym} 650 3610 0 0 {name=x8}
+C {cells/D15_SILICON/gf180mcu_osu_sc_gp9t3v3_nor3_1.sym} 2300 3610 0 0 {name=x9}
+C {cells/D9_Nawiatsob/gf180mcu_osu_sc_gp9t3v3__mux4_1.sym} 4910 790 0 0 {name=x10}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 4150 400 0 0 {name=IO13
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/ipin.sym} 4100 280 0 0 {name=p94 lab=B}
+C {devices/lab_pin.sym} 4250 420 0 0 {name=p95 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 4230 140 0 0 {name=p96 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 4410 180 0 1 {name=p97 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 4410 360 0 1 {name=p98 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 240 0 1 {name=p99 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 260 0 1 {name=p100 sig_type=std_logic lab=H}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 4150 750 0 0 {name=IO14
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/ipin.sym} 4100 630 0 0 {name=p101 lab=B}
+C {devices/lab_pin.sym} 4250 770 0 0 {name=p102 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 4230 490 0 0 {name=p103 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 4410 530 0 1 {name=p104 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 4410 710 0 1 {name=p105 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 590 0 1 {name=p106 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 610 0 1 {name=p107 sig_type=std_logic lab=H}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 4150 1110 0 0 {name=IO15
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/ipin.sym} 4100 990 0 0 {name=p108 lab=B}
+C {devices/lab_pin.sym} 4250 1130 0 0 {name=p109 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 4230 850 0 0 {name=p110 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 4410 890 0 1 {name=p111 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 4410 1070 0 1 {name=p112 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 950 0 1 {name=p113 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 970 0 1 {name=p114 sig_type=std_logic lab=H}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 4150 60 0 0 {name=IO16
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/ipin.sym} 4100 -60 0 0 {name=p115 lab=B}
+C {devices/lab_pin.sym} 4250 80 0 0 {name=p116 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 4230 -200 0 0 {name=p117 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 4410 -160 0 1 {name=p118 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 4410 20 0 1 {name=p119 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 -100 0 1 {name=p120 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 -80 0 1 {name=p121 sig_type=std_logic lab=H}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 4150 1450 0 0 {name=IO17
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/ipin.sym} 4100 1330 0 0 {name=p122 lab=B}
+C {devices/lab_pin.sym} 4250 1470 0 0 {name=p123 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 4230 1190 0 0 {name=p124 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 4410 1230 0 1 {name=p125 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 4410 1410 0 1 {name=p126 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 1290 0 1 {name=p127 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 1310 0 1 {name=p128 sig_type=std_logic lab=H}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 4150 1770 0 0 {name=IO18
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/ipin.sym} 4100 1650 0 0 {name=p129 lab=B}
+C {devices/lab_pin.sym} 4250 1790 0 0 {name=p130 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 4230 1510 0 0 {name=p131 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 4410 1550 0 1 {name=p132 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 4410 1730 0 1 {name=p133 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 1610 0 1 {name=p134 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 4410 1630 0 1 {name=p135 sig_type=std_logic lab=H}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 5570 930 0 1 {name=IO19
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/opin.sym} 5650 810 0 0 {name=p136 lab=L}
+C {devices/lab_pin.sym} 5450 930 0 0 {name=p137 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 5450 670 0 0 {name=p138 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 5310 890 0 0 {name=p139 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 5310 810 0 0 {name=p140 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 5310 830 0 0 {name=p141 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 5310 710 0 0 {name=p142 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 5310 870 0 0 {name=p143 sig_type=std_logic lab=L}
