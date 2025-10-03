@@ -1,0 +1,2 @@
+03-Oct-2025 15:28:31 | INFO    | Your Klayout version is: KLayout 0.30.2
+03-Oct-2025 15:28:31 | ERROR   | The input GDS file path /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/layout/gf180mcu_gp9t3v3_comp2_1.gds doesn't exist, please recheck.

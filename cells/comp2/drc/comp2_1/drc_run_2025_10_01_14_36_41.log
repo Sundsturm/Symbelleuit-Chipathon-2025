@@ -1,7 +1,0 @@
-01-Oct-2025 16:36:41 | INFO    | Your Klayout version is: KLayout 0.30.2
-01-Oct-2025 16:36:41 | INFO    | ## Generating template with for the following rule tables: ['metaltop_30k.drc', 'via1.drc', 'via3_split.drc', 'lvs_bjt.drc', 'metal1.drc', 'via2_split.drc', 'nwell.drc', 'poly2.drc', 'ldnmos_split.drc', 'sram_5p0.drc', 'dnwell_split.drc', 'via5.drc', 'ldpmos_split.drc', 'geom.drc', 'dummy_exclude.drc', 'contact_split.drc', 'dualgate.drc', 'sram_3p3.drc', 'mim_b.drc', 'via3.drc', 'comp.drc', 'nwell_split.drc', 'nat.drc', 'metaltop.drc', 'via1_split.drc', 'efuse.drc', 'nat_split.drc', 'mcell.drc', 'drc_bjt.drc', 'via4_split.drc', 'lvpwell_split.drc', 'esd.drc', 'sab.drc', 'ldpmos.drc', 'pplus.drc', 'metal1_split.drc', 'metal3.drc', 'metal2.drc', 'lvpwell.drc', 'nplus.drc', 'via2.drc', 'hres.drc', 'ymtp_mk.drc', 'mim_a.drc', 'metal5.drc', 'ldnmos.drc', 'pres.drc', 'otp_mk.drc', 'via4.drc', 'contact.drc', 'lres.drc', 'metal4.drc', 'dnwell.drc']
-01-Oct-2025 16:36:41 | INFO    | ## Your run dir located at: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/drc/comp2_1
-01-Oct-2025 16:36:41 | INFO    | Running Global Foundries 180nm MCU /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/layout/gf180mcu_gp9t3v3__comp2_1.gds checks on design main on cell gf180mcu_gp9t3v3__comp2_1:
-01-Oct-2025 16:36:49 | ERROR   | Klayout DRC run is not clean.
-01-Oct-2025 16:36:49 | ERROR   | Violated rules are : {'NP.5di', 'PP.5di'}
-

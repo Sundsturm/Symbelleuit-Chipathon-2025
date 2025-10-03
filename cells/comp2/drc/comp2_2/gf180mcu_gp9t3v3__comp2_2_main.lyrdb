@@ -2,7 +2,7 @@
 <report-database>
  <description>DRC Run Report at</description>
  <original-file/>
- <generator>drc: script='/foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/drc/comp2_2/main.drc'</generator>
+ <generator>drc: script='/foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/lvs/comp2_2/main.drc'</generator>
  <top-cell>gf180mcu_gp9t3v3__comp2_2</top-cell>
  <tags>
  </tags>
