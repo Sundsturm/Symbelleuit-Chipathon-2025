@@ -22,6 +22,12 @@ E {}
 T {Symbelleuit} 210 1140 0 0 1 1 {}
 T {Symbelleuit} 1740 1160 0 0 1 1 {}
 T {Nawiatsob} 4850 1080 0 0 1 1 {}
+T {SILICON} 530 1790 0 0 1 1 {}
+T {SILICON} 2140 1800 0 0 1 1 {}
+T {SILICON} 2160 2680 0 0 1 1 {}
+T {SILICON} 550 2660 0 0 1 1 {}
+T {SILICON} 540 3660 0 0 1 1 {}
+T {SILICON} 2200 3660 0 0 1 1 {}
 N 720 680 820 680 {lab=#net1}
 N 820 680 820 1070 {lab=#net1}
 N 820 1070 950 1070 {lab=#net1}
@@ -153,6 +159,114 @@ N 5450 670 5490 670 {lab=VDD}
 N 5060 780 5240 780 {lab=#net17}
 N 5240 780 5240 850 {lab=#net17}
 N 5240 850 5310 850 {lab=#net17}
+N 320 1360 440 1360 {lab=#net18}
+N 440 1360 440 1690 {lab=#net18}
+N 440 1690 500 1690 {lab=#net18}
+N 320 1650 400 1650 {lab=#net19}
+N 400 1650 400 1710 {lab=#net19}
+N 400 1710 500 1710 {lab=#net19}
+N 320 1940 450 1940 {lab=#net20}
+N 450 1730 450 1940 {lab=#net20}
+N 450 1730 500 1730 {lab=#net20}
+N 140 1280 180 1280 {lab=#net21}
+N 140 1540 180 1540 {lab=#net22}
+N 140 1570 180 1570 {lab=#net23}
+N 140 1830 180 1830 {lab=#net24}
+N 140 1860 180 1860 {lab=#net25}
+N 140 2120 180 2120 {lab=#net26}
+N 800 1710 940 1710 {lab=#net27}
+N 1080 1530 1120 1530 {lab=#net28}
+N 1080 1790 1120 1790 {lab=#net29}
+N 1910 1360 2030 1360 {lab=#net18}
+N 2030 1360 2030 1690 {lab=#net18}
+N 2030 1690 2090 1690 {lab=#net18}
+N 1910 1650 1990 1650 {lab=#net19}
+N 1990 1650 1990 1710 {lab=#net19}
+N 1990 1710 2090 1710 {lab=#net19}
+N 1910 1940 2040 1940 {lab=#net20}
+N 2040 1730 2040 1940 {lab=#net20}
+N 2040 1730 2090 1730 {lab=#net20}
+N 1730 1280 1770 1280 {lab=#net21}
+N 1730 1540 1770 1540 {lab=#net22}
+N 1730 1570 1770 1570 {lab=#net23}
+N 1730 1830 1770 1830 {lab=#net24}
+N 1730 1860 1770 1860 {lab=#net25}
+N 1730 2120 1770 2120 {lab=#net26}
+N 2390 1710 2530 1710 {lab=#net27}
+N 2670 1530 2710 1530 {lab=#net28}
+N 2670 1790 2710 1790 {lab=#net29}
+N 320 2250 440 2250 {lab=#net18}
+N 440 2250 440 2580 {lab=#net18}
+N 440 2580 500 2580 {lab=#net18}
+N 320 2540 400 2540 {lab=#net19}
+N 400 2540 400 2600 {lab=#net19}
+N 400 2600 500 2600 {lab=#net19}
+N 320 2830 450 2830 {lab=#net20}
+N 450 2620 450 2830 {lab=#net20}
+N 450 2620 500 2620 {lab=#net20}
+N 140 2170 180 2170 {lab=#net21}
+N 140 2430 180 2430 {lab=#net22}
+N 140 2460 180 2460 {lab=#net23}
+N 140 2720 180 2720 {lab=#net24}
+N 140 2750 180 2750 {lab=#net25}
+N 140 3010 180 3010 {lab=#net26}
+N 800 2600 940 2600 {lab=#net27}
+N 1080 2420 1120 2420 {lab=#net28}
+N 1080 2680 1120 2680 {lab=#net29}
+N 1940 2250 2060 2250 {lab=#net18}
+N 2060 2250 2060 2580 {lab=#net18}
+N 2060 2580 2120 2580 {lab=#net18}
+N 1940 2540 2020 2540 {lab=#net19}
+N 2020 2540 2020 2600 {lab=#net19}
+N 2020 2600 2120 2600 {lab=#net19}
+N 1940 2830 2070 2830 {lab=#net20}
+N 2070 2620 2070 2830 {lab=#net20}
+N 2070 2620 2120 2620 {lab=#net20}
+N 1760 2170 1800 2170 {lab=#net21}
+N 1760 2430 1800 2430 {lab=#net22}
+N 1760 2460 1800 2460 {lab=#net23}
+N 1760 2720 1800 2720 {lab=#net24}
+N 1760 2750 1800 2750 {lab=#net25}
+N 1760 3010 1800 3010 {lab=#net26}
+N 2420 2600 2560 2600 {lab=#net27}
+N 2700 2420 2740 2420 {lab=#net28}
+N 2700 2680 2740 2680 {lab=#net29}
+N 1970 3260 2090 3260 {lab=#net18}
+N 2090 3260 2090 3590 {lab=#net18}
+N 2090 3590 2150 3590 {lab=#net18}
+N 1970 3550 2050 3550 {lab=#net19}
+N 2050 3550 2050 3610 {lab=#net19}
+N 2050 3610 2150 3610 {lab=#net19}
+N 1970 3840 2100 3840 {lab=#net20}
+N 2100 3630 2100 3840 {lab=#net20}
+N 2100 3630 2150 3630 {lab=#net20}
+N 1790 3180 1830 3180 {lab=#net21}
+N 1790 3440 1830 3440 {lab=#net22}
+N 1790 3470 1830 3470 {lab=#net23}
+N 1790 3730 1830 3730 {lab=#net24}
+N 1790 3760 1830 3760 {lab=#net25}
+N 1790 4020 1830 4020 {lab=#net26}
+N 2450 3610 2590 3610 {lab=#net27}
+N 2730 3430 2770 3430 {lab=#net28}
+N 2730 3690 2770 3690 {lab=#net29}
+N 320 3260 440 3260 {lab=#net18}
+N 440 3260 440 3590 {lab=#net18}
+N 440 3590 500 3590 {lab=#net18}
+N 320 3550 400 3550 {lab=#net19}
+N 400 3550 400 3610 {lab=#net19}
+N 400 3610 500 3610 {lab=#net19}
+N 320 3840 450 3840 {lab=#net20}
+N 450 3630 450 3840 {lab=#net20}
+N 450 3630 500 3630 {lab=#net20}
+N 140 3180 180 3180 {lab=#net21}
+N 140 3440 180 3440 {lab=#net22}
+N 140 3470 180 3470 {lab=#net23}
+N 140 3730 180 3730 {lab=#net24}
+N 140 3760 180 3760 {lab=#net25}
+N 140 4020 180 4020 {lab=#net26}
+N 800 3610 940 3610 {lab=#net27}
+N 1080 3430 1120 3430 {lab=#net28}
+N 1080 3690 1120 3690 {lab=#net29}
 C {devices/title.sym} 160 -30 0 0 {name=l5 author="Integration Padframe"}
 C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 180 950 0 0 {name=IO1
 model=gf180mcu_fd_io__bi_t
@@ -329,7 +443,7 @@ C {devices/lab_pin.sym} 2000 770 0 1 {name=p92 sig_type=std_logic lab=L}
 C {devices/lab_pin.sym} 2000 790 0 1 {name=p93 sig_type=std_logic lab=H}
 C {cells/D17_Symbelleuit/gf180mcu_gp9t3v3__comp2_1.sym} 2230 640 0 0 {name=x3}
 C {cells/D15_SILICON/gf180mcu_osu_sc_gp12t3v3__and3_1.sym} 650 1710 0 0 {name=x4}
-C {cells/D15_SILICON/gf180mcu_osu_sc_gp12t3v3__nand3_1.sym} 2250 1710 0 0 {name=x5}
+C {cells/D15_SILICON/gf180mcu_osu_sc_gp12t3v3__nand3_1.sym} 2240 1710 0 0 {name=x5}
 C {cells/D15_SILICON/gf180mcu_osu_sc_gp12t3v3__nor3_1.sym} 650 2600 0 0 {name=x6}
 C {cells/D15_SILICON/gf180mcu_osu_sc_gp9t3v3__and3_2.sym} 2270 2600 0 0 {name=x7}
 C {cells/D15_SILICON/gf180mcu_osu_sc_gp9t3v3__or3_1.sym} 650 3610 0 0 {name=x8}
@@ -427,3 +541,321 @@ C {devices/lab_pin.sym} 5310 810 0 0 {name=p140 sig_type=std_logic lab=H}
 C {devices/lab_pin.sym} 5310 830 0 0 {name=p141 sig_type=std_logic lab=L}
 C {devices/lab_pin.sym} 5310 710 0 0 {name=p142 sig_type=std_logic lab=L}
 C {devices/lab_pin.sym} 5310 870 0 0 {name=p143 sig_type=std_logic lab=L}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 60 2120 0 0 {name=IO20
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 60 1830 0 0 {name=IO21
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 60 1540 0 0 {name=IO22
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 320 1320 0 1 {name=p144 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 1610 0 1 {name=p145 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 1900 0 1 {name=p146 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 1400 0 1 {name=p147 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 1690 0 1 {name=p148 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 1980 0 1 {name=p149 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 1500 0 1 {name=p150 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 2080 0 1 {name=p151 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 1790 0 1 {name=p152 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 1670 0 1 {name=p153 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 1960 0 1 {name=p154 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 1380 0 1 {name=p155 sig_type=std_logic lab=L}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1200 1790 0 1 {name=IO23
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 940 1750 0 0 {name=p156 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 940 1670 0 0 {name=p157 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 940 1690 0 0 {name=p158 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 940 1730 0 0 {name=p159 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 940 1570 0 0 {name=p160 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 140 1540 0 0 {name=p161 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 140 1280 0 0 {name=p162 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 140 1830 0 0 {name=p163 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 140 2120 0 0 {name=p164 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1080 1790 0 0 {name=p165 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 140 1570 0 0 {name=p166 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 140 1860 0 0 {name=p167 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 1080 1530 0 0 {name=p168 sig_type=std_logic lab=VDD
+
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1650 2120 0 0 {name=IO24
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1650 1830 0 0 {name=IO25
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1650 1540 0 0 {name=IO26
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 1910 1320 0 1 {name=p169 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1910 1610 0 1 {name=p170 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1910 1900 0 1 {name=p171 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1910 1400 0 1 {name=p172 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1910 1690 0 1 {name=p173 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1910 1980 0 1 {name=p174 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1910 1500 0 1 {name=p175 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1910 2080 0 1 {name=p176 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1910 1790 0 1 {name=p177 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1910 1670 0 1 {name=p178 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1910 1960 0 1 {name=p179 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1910 1380 0 1 {name=p180 sig_type=std_logic lab=L}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 2790 1790 0 1 {name=IO27
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 2530 1750 0 0 {name=p181 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 2530 1670 0 0 {name=p182 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 2530 1690 0 0 {name=p183 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 2530 1730 0 0 {name=p184 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 2530 1570 0 0 {name=p185 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1730 1540 0 0 {name=p186 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1730 1280 0 0 {name=p187 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 1730 1830 0 0 {name=p188 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1730 2120 0 0 {name=p189 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 2670 1790 0 0 {name=p190 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1730 1570 0 0 {name=p191 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 1730 1860 0 0 {name=p192 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 2670 1530 0 0 {name=p193 sig_type=std_logic lab=VDD
+
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 60 3010 0 0 {name=IO28
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 60 2720 0 0 {name=IO29
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 60 2430 0 0 {name=IO30
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 320 2210 0 1 {name=p194 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 2500 0 1 {name=p195 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 2790 0 1 {name=p196 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 2290 0 1 {name=p197 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 2580 0 1 {name=p198 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 2870 0 1 {name=p199 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 2390 0 1 {name=p200 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 2970 0 1 {name=p201 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 2680 0 1 {name=p202 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 2560 0 1 {name=p203 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 2850 0 1 {name=p204 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 2270 0 1 {name=p205 sig_type=std_logic lab=L}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1200 2680 0 1 {name=IO31
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 940 2640 0 0 {name=p206 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 940 2560 0 0 {name=p207 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 940 2580 0 0 {name=p208 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 940 2620 0 0 {name=p209 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 940 2460 0 0 {name=p210 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 140 2430 0 0 {name=p211 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 140 2170 0 0 {name=p212 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 140 2720 0 0 {name=p213 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 140 3010 0 0 {name=p214 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1080 2680 0 0 {name=p215 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 140 2460 0 0 {name=p216 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 140 2750 0 0 {name=p217 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 1080 2420 0 0 {name=p218 sig_type=std_logic lab=VDD
+
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1680 3010 0 0 {name=IO32
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1680 2720 0 0 {name=IO33
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1680 2430 0 0 {name=IO34
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 1940 2210 0 1 {name=p219 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1940 2500 0 1 {name=p220 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1940 2790 0 1 {name=p221 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1940 2290 0 1 {name=p222 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1940 2580 0 1 {name=p223 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1940 2870 0 1 {name=p224 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1940 2390 0 1 {name=p225 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1940 2970 0 1 {name=p226 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1940 2680 0 1 {name=p227 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1940 2560 0 1 {name=p228 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1940 2850 0 1 {name=p229 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1940 2270 0 1 {name=p230 sig_type=std_logic lab=L}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 2820 2680 0 1 {name=IO35
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 2560 2640 0 0 {name=p231 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 2560 2560 0 0 {name=p232 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 2560 2580 0 0 {name=p233 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 2560 2620 0 0 {name=p234 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 2560 2460 0 0 {name=p235 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1760 2430 0 0 {name=p236 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1760 2170 0 0 {name=p237 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 1760 2720 0 0 {name=p238 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1760 3010 0 0 {name=p239 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 2700 2680 0 0 {name=p240 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1760 2460 0 0 {name=p241 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 1760 2750 0 0 {name=p242 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 2700 2420 0 0 {name=p243 sig_type=std_logic lab=VDD
+
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1710 4020 0 0 {name=IO36
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1710 3730 0 0 {name=IO37
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1710 3440 0 0 {name=IO38
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 1970 3220 0 1 {name=p244 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1970 3510 0 1 {name=p245 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1970 3800 0 1 {name=p246 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1970 3300 0 1 {name=p247 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1970 3590 0 1 {name=p248 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1970 3880 0 1 {name=p249 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 1970 3400 0 1 {name=p250 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1970 3980 0 1 {name=p251 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1970 3690 0 1 {name=p252 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1970 3570 0 1 {name=p253 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1970 3860 0 1 {name=p254 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1970 3280 0 1 {name=p255 sig_type=std_logic lab=L}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 2850 3690 0 1 {name=IO39
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 2590 3650 0 0 {name=p256 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 2590 3570 0 0 {name=p257 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 2590 3590 0 0 {name=p258 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 2590 3630 0 0 {name=p259 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 2590 3470 0 0 {name=p260 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 1790 3440 0 0 {name=p261 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1790 3180 0 0 {name=p262 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 1790 3730 0 0 {name=p263 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1790 4020 0 0 {name=p264 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 2730 3690 0 0 {name=p265 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1790 3470 0 0 {name=p266 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 1790 3760 0 0 {name=p267 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 2730 3430 0 0 {name=p268 sig_type=std_logic lab=VDD
+
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 60 4020 0 0 {name=IO40
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 60 3730 0 0 {name=IO41
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 60 3440 0 0 {name=IO42
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 320 3220 0 1 {name=p269 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 3510 0 1 {name=p270 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 3800 0 1 {name=p271 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 3300 0 1 {name=p272 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 3590 0 1 {name=p273 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 3880 0 1 {name=p274 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 320 3400 0 1 {name=p275 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 3980 0 1 {name=p276 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 3690 0 1 {name=p277 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 3570 0 1 {name=p278 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 3860 0 1 {name=p279 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 320 3280 0 1 {name=p280 sig_type=std_logic lab=L}
+C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_bi_t.sym} 1200 3690 0 1 {name=IO43
+model=gf180mcu_fd_io__bi_t
+spiceprefix=X
+}
+C {devices/lab_pin.sym} 940 3650 0 0 {name=p281 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 940 3570 0 0 {name=p282 sig_type=std_logic lab=H}
+C {devices/lab_pin.sym} 940 3590 0 0 {name=p283 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 940 3630 0 0 {name=p284 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 940 3470 0 0 {name=p285 sig_type=std_logic lab=L}
+C {devices/lab_pin.sym} 140 3440 0 0 {name=p286 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 140 3180 0 0 {name=p287 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 140 3730 0 0 {name=p288 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 140 4020 0 0 {name=p289 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1080 3690 0 0 {name=p290 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 140 3470 0 0 {name=p291 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 140 3760 0 0 {name=p292 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 1080 3430 0 0 {name=p293 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 800 1690 0 1 {name=p294 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 800 1730 0 1 {name=p295 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 2390 1690 0 1 {name=p296 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 2390 1730 0 1 {name=p297 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 2420 2580 0 1 {name=p298 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 2420 2620 0 1 {name=p299 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 800 2580 0 1 {name=p300 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 800 2620 0 1 {name=p301 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 800 3590 0 1 {name=p302 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 800 3630 0 1 {name=p303 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 2450 3590 0 1 {name=p304 sig_type=std_logic lab=VDD
+
+}
+C {devices/lab_pin.sym} 2450 3630 0 1 {name=p305 sig_type=std_logic lab=VSS}
