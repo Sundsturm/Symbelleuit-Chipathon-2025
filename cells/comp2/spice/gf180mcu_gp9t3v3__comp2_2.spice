@@ -3,7 +3,7 @@
 .include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
 
-.subckt gf180mcu_gp9t3v3__comp2_2 G L E VDD VSS A B
+.subckt gf180mcu_gp9t3v3__comp2_2 B A G L E VDD VSS
 X0 VDD a_n12969_13089# L VDD pfet_03v3 ad=0.459p pd=2.24u as=0.459p ps=2.24u w=1.7u l=0.3u
 X1 G a_n10617_13139# VSS VSS nfet_03v3 ad=0.2295p pd=1.39u as=0.2295p ps=1.39u w=0.85u l=0.3u
 X2 VSS B a_n11961_13139# VSS nfet_03v3 ad=0.2295p pd=1.39u as=0.459p ps=2.78u w=0.85u l=0.3u
