@@ -1,0 +1,9 @@
+# Set the library path
+set XSCHEM_LIBRARY_PATH [list .]
+if {[info exists env(PDK_ROOT)] && [info exists env(PDK)]} {
+    lappend XSCHEM_LIBRARY_PATH "$env(PDK_ROOT)/$env(PDK)/libs.tech/xschem"
+}
+
+# Set XSCHEM_SHAREDIR explicitly to the location we found
+set env(XSCHEM_SHAREDIR) /usr/share/xschem
+set XSCHEM_SHAREDIR $env(XSCHEM_SHAREDIR)

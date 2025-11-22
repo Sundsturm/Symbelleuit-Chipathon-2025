@@ -1,0 +1,77 @@
+name: gf180mcu_gp9t3v3__comp2_1
+description: 1-bit Comparator 1x Drive
+PDK: gf180mcuD
+cace_format: 5.2
+
+authorship:
+  designer: "User"
+  company: "Symbelleuit"
+  creation_date: "2025-11-22"
+  license: "Apache 2.0"
+
+paths:
+  root: .
+  documentation: docs
+  netlist: spice
+  schematic: schematics
+  layout: layout
+
+pins:
+  VDD:
+    description: Power supply
+    type: power
+    direction: inout
+  VSS:
+    description: Ground
+    type: ground
+    direction: inout
+  A:
+    description: Input A
+    type: signal
+    direction: input
+  B:
+    description: Input B
+    type: signal
+    direction: input
+  L:
+    description: Output L (A < B)
+    type: signal
+    direction: output
+  E:
+    description: Output E (A = B)
+    type: signal
+    direction: output
+  G:
+    description: Output G (A > B)
+    type: signal
+    direction: output
+
+default_conditions:
+  vdd:
+    description: Power supply voltage
+    display: VDD
+    unit: V
+    typical: 3.3
+  temperature:
+    description: Ambient temperature
+    display: Temp
+    unit: °C
+    typical: 27
+  corner:
+    description: Process corner
+    display: Corner
+    typical: typical
+
+parameters:
+  magic_area:
+    display: Area
+    unit: µm²
+    spec:
+      area:
+        maximum:
+          value: 1000
+    tool: magic_area
+
+  magic_drc:
+    display: DRC
+    tool: magic_drc
