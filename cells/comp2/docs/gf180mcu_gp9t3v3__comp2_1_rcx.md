@@ -5,7 +5,7 @@
 
 |      Parameter       |         Tool         |     Result      | Min Limit  |  Min Value   | Typ Target |  Typ Value   | Max Limit  |  Max Value   |  Status  |
 | :------------------- | :------------------- | :-------------- | ---------: | -----------: | ---------: | -----------: | ---------: | -----------: | :------: |
-| Area                 | magic_area           | area                 |               ​ |          ​ |            ​ |          ​ |     1000 µm² |  1.000 µm² |   Pass ✅    |
+| Area                 | magic_area           | area                 |               ​ |          ​ |            ​ |          ​ |     1000 µm² | 100.266 µm² |   Pass ✅    |
 
 
 ## Plots

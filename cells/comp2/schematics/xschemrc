@@ -1,9 +1,21 @@
-# Set the library path
-set XSCHEM_LIBRARY_PATH [list .]
-if {[info exists env(PDK_ROOT)] && [info exists env(PDK)]} {
-    lappend XSCHEM_LIBRARY_PATH "$env(PDK_ROOT)/$env(PDK)/libs.tech/xschem"
-}
-
-# Set XSCHEM_SHAREDIR explicitly to the location we found
-set env(XSCHEM_SHAREDIR) /usr/share/xschem
+# Set XSCHEM_SHAREDIR explicitly
+set env(XSCHEM_SHAREDIR) /usr/local/share/xschem
 set XSCHEM_SHAREDIR $env(XSCHEM_SHAREDIR)
+
+# Setup PDK environment variables
+if {![info exists env(PDK_ROOT)]} {
+    set env(PDK_ROOT) "/home/astha/pdk"
+}
+set env(PDK) "gf180mcuD"
+
+# Set the library path explicitly
+set XSCHEM_LIBRARY_PATH [join [list \
+    . \
+    ${XSCHEM_SHAREDIR}/xschem_library \
+    ${XSCHEM_SHAREDIR}/xschem_library/devices \
+    $env(PDK_ROOT)/$env(PDK)/libs.tech/xschem \
+] ":"]
+
+set env(XSCHEM_LIBRARY_PATH) $XSCHEM_LIBRARY_PATH
+
+puts "DEBUG: XSCHEM_LIBRARY_PATH is $XSCHEM_LIBRARY_PATH"

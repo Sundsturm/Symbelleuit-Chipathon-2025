@@ -1,4 +1,4 @@
-** sch_path: /foss/designs/Symbelleuit-Chipathon-2025/cells/comp2/schematics/gf180mcu_gp9t3v3__comp2_1.sch
+** sch_path: /home/astha/eda/designs/Symbelleuit-Chipathon-2025/cells/comp2/schematics/gf180mcu_gp9t3v3__comp2_1.sch
 .subckt gf180mcu_gp9t3v3__comp2_1 VDD L A E G B VSS
 *.PININFO L:O G:O E:O A:I B:I VDD:I VSS:I
 XM17 net1 NOT_A VDD VDD pfet_03v3 L=0.3u W=1.7u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
