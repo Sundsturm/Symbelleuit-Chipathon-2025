@@ -1,0 +1,4 @@
+10-Oct-2025 17:45:20 | INFO    | Your Klayout version is: KLayout 0.30.2
+10-Oct-2025 17:45:20 | INFO    | ## Generating template with for the following rule tables: ['metal1.drc']
+10-Oct-2025 17:45:20 | INFO    | ## Your run dir located at: /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/drc/comp2_1
+10-Oct-2025 17:45:20 | INFO    | Running Global Foundries 180nm MCU /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/layout/gf180mcu_gp9t3v3__comp2_1.gds checks on design metal1 on cell gf180mcu_gp9t3v3__comp2_1:
