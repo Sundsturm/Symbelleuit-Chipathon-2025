@@ -1,0 +1,30 @@
+* CACE Peak Dynamic Current Testbench
+.include $PDKPATH/libs.tech/ngspice/design.ngspice
+.lib $PDKPATH/libs.tech/ngspice/sm141064.ngspice {corner}
+
+.include {netlist}
+
+X1 VDD L A E G B VSS {cell_name}
+
+VPOWER VDD 0 DC {vdd}
+VGND VSS 0 DC 0
+
+VA A 0 PULSE(0 {vdd} 2n 50p 50p 4n 8n)
+VB B 0 PULSE(0 {vdd} 3n 50p 50p 6n 12n)
+
+CL L 0 50f
+CE E 0 50f
+CG G 0 50f
+
+.tran 100p 25n
+
+.control
+  run
+  let idd = -i(VPOWER)
+  meas tran i_peak MAX idd from=1n to=25n
+  print i_peak
+  echo "$&i_peak" > comp2_tb_dynamic_0.data
+.endc
+
+.GLOBAL 0
+.end

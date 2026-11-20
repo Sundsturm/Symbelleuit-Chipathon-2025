@@ -1,12 +1,12 @@
 # gf180mcu_gp9t3v3__comp2_2
 
-- Description: 1-bit Comparator 2x Drive
+- Description: 1-bit Magnitude Comparator 2x Drive
 - PDK: gf180mcuD
 
 ## Authorship
 
-- Designer: User
-- Company: Symbelleuit
+- Designer: Symbelleuit Team
+- Company: Symbelleuit - Chipathon 2025
 - Created: 2025-11-22
 - License: Apache 2.0
 - Last modified: None
@@ -14,31 +14,31 @@
 ## Pins
 
 - VDD
-  + Description: Power supply
+  + Description: Power supply voltage (Nominal 3.3V)
   + Type: power
   + Direction: inout
 - VSS
-  + Description: Ground
+  + Description: Ground reference (0V)
   + Type: ground
   + Direction: inout
 - A
-  + Description: Input A
+  + Description: Digital input A
   + Type: signal
   + Direction: input
 - B
-  + Description: Input B
+  + Description: Digital input B
   + Type: signal
   + Direction: input
 - L
-  + Description: Output L (A < B)
+  + Description: Output Less Than (A < B)
   + Type: signal
   + Direction: output
 - E
-  + Description: Output E (A = B)
+  + Description: Output Equal (A == B)
   + Type: signal
   + Direction: output
 - G
-  + Description: Output G (A > B)
+  + Description: Output Greater Than (A > B)
   + Type: signal
   + Direction: output
 
@@ -50,12 +50,12 @@
   + Unit: V
   + Typical: 3.3
 - temperature
-  + Description: Ambient temperature
+  + Description: Operating ambient temperature
   + Display: Temp
   + Unit: °C
   + Typical: 27
 - corner
-  + Description: Process corner
+  + Description: Process model corner
   + Display: Corner
   + Typical: typical
 

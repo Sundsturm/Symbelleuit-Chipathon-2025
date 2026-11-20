@@ -1,0 +1,26 @@
+* CACE DC Transfer Switching Threshold Testbench
+.include $PDKPATH/libs.tech/ngspice/design.ngspice
+.lib $PDKPATH/libs.tech/ngspice/sm141064.ngspice {corner}
+
+.include {netlist}
+
+X1 VDD L A E G B VSS {cell_name}
+
+VPOWER VDD 0 DC {vdd}
+VGND VSS 0 DC 0
+VA A 0 DC 0
+VB B 0 DC 0
+
+CL L 0 50f
+CE E 0 50f
+CG G 0 50f
+
+.control
+  dc VA 0 {vdd} 0.02
+  meas dc vm_G_sweepA WHEN v(G) = 1.65 CROSS=1
+  print vm_G_sweepA
+  echo "$&vm_G_sweepA" > comp2_tb_dc_0.data
+.endc
+
+.GLOBAL 0
+.end

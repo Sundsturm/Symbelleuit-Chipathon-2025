@@ -102,7 +102,7 @@ parameters:
         typical: 27
     tool:
       ngspice:
-        template: comp2_tb_iddq.sch
+        template: comp2_2_tb_iddq.sch
         format: ascii
         suffix: .data
         variables: [i_quiescent]
@@ -126,7 +126,7 @@ parameters:
         typical: 27
     tool:
       ngspice:
-        template: comp2_tb_qpower.sch
+        template: comp2_2_tb_qpower.sch
         format: ascii
         suffix: .data
         variables: [p_quiescent]
@@ -150,7 +150,7 @@ parameters:
         typical: 27
     tool:
       ngspice:
-        template: comp2_tb_dynamic.sch
+        template: comp2_2_tb_dynamic.sch
         format: ascii
         suffix: .data
         variables: [i_peak]
@@ -174,7 +174,7 @@ parameters:
         typical: 27
     tool:
       ngspice:
-        template: comp2_tb_dynamic_power.sch
+        template: comp2_2_tb_dynamic_power.sch
         format: ascii
         suffix: .data
         variables: [p_dynamic]
@@ -198,7 +198,7 @@ parameters:
         typical: 27
     tool:
       ngspice:
-        template: comp2_tb_powerup.sch
+        template: comp2_2_tb_powerup.sch
         format: ascii
         suffix: .data
         variables: [i_inrush]
@@ -227,7 +227,7 @@ parameters:
         typical: 27
     tool:
       ngspice:
-        template: comp2_tb_dc.sch
+        template: comp2_2_tb_dc.sch
         format: ascii
         suffix: .data
         variables: [vm_G_sweepA]
@@ -251,7 +251,7 @@ parameters:
         typical: 27
     tool:
       ngspice:
-        template: comp2_tb_timing.sch
+        template: comp2_2_tb_timing.sch
         format: ascii
         suffix: .data
         variables: [tpd_max]
@@ -273,7 +273,7 @@ parameters:
         typical: 27
     tool:
       ngspice:
-        template: comp2_tb_func.sch
+        template: comp2_2_tb_func.sch
         format: ascii
         suffix: .data
         variables: [func_total_err]

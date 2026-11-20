@@ -26,7 +26,7 @@ N 450 -220 450 -200 {lab=G}
 N 450 -140 450 -120 {lab=GND}
 C {code_shown.sym} -390 60 0 0 {name=MODELS only_toplevel=false value=".include $PDKPATH/libs.tech/ngspice/design.ngspice
 .lib $PDKPATH/libs.tech/ngspice/sm141064.ngspice typical
-.include /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/spice/rcx/gf180mcu_gp9t3v3__comp2_1.spice"}
+.include /foss/designs/chipathon_2025/Symbelleuit-Chipathon-2025/cells/comp2/spice/comp2_1_netlist.spice"}
 C {title.sym} -220 150 0 0 {name=l5 author="Symbelleuit"}
 C {code.sym} -410 -100 0 0 {name=SIM_CONTROL only_toplevel=false value="* CACE IDDQ Quiescent Leakage Simulation
 .control

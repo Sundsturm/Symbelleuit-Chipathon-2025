@@ -123,6 +123,14 @@ run_single_cace() {
   echo " Running CACE Characterization with --source ${src}..."
   echo "------------------------------------------------------------------------"
   
+  # Point dynamic netlist symlink to the chosen source (schematic, layout, or rcx)
+  local target_netlist="${SCRIPT_DIR}/spice/${src}/gf180mcu_gp9t3v3__${CELL}.spice"
+  if [ -f "${target_netlist}" ]; then
+    # Sanitize subcircuit netlist to remove duplicate model includes that cause Ngspice fatal errors
+    sed -i '/design\.ngspice/d; /sm141064\.ngspice/d' "${target_netlist}" 2>/dev/null || true
+    (cd "${SCRIPT_DIR}/spice" && ln -sf "${src}/gf180mcu_gp9t3v3__${CELL}.spice" "${CELL}_netlist.spice")
+  fi
+
   if command -v cace &> /dev/null; then
     cace "${YAML_FILE}" --source "${src}"
     echo "CACE completed for source: ${src}. Output summary updated."
