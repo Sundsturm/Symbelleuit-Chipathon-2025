@@ -1,0 +1,35 @@
+* CACE Propagation Delay Timing Testbench
+.include $PDKPATH/libs.tech/ngspice/design.ngspice
+.lib $PDKPATH/libs.tech/ngspice/sm141064.ngspice {corner}
+
+.include {netlist}
+
+X1 VDD L A E G B VSS {cell_name}
+
+VPOWER VDD 0 DC {vdd}
+VGND VSS 0 DC 0
+
+* Stimuli: Single-input transition sequence
+VA A 0 PWL(0 0 9.9n 0 10.1n {vdd} 19.9n {vdd} 20.1n 0 25n 0)
+VB B 0 PWL(0 0 4.9n 0 5.1n {vdd} 14.9n {vdd} 15.1n 0 25n 0)
+
+CL L 0 50f
+CE E 0 50f
+CG G 0 50f
+
+.tran 50p 25n
+.control
+  run
+  meas tran tpd_L_LH trig v(B) val=1.65 rise=1 targ v(L) val=1.65 rise=1
+  meas tran tpd_E_HL trig v(B) val=1.65 rise=1 targ v(E) val=1.65 fall=1
+  meas tran tpd_L_HL trig v(A) val=1.65 rise=1 targ v(L) val=1.65 fall=1
+  meas tran tpd_E_LH trig v(A) val=1.65 rise=1 targ v(E) val=1.65 rise=1
+  meas tran tpd_G_LH trig v(B) val=1.65 fall=1 targ v(G) val=1.65 rise=1
+  meas tran tpd_G_HL trig v(A) val=1.65 fall=1 targ v(G) val=1.65 fall=1
+  let tpd_max = max(max(tpd_L_LH, tpd_L_HL), max(max(tpd_G_LH, tpd_G_HL), max(tpd_E_LH, tpd_E_HL)))
+  print tpd_max
+  echo "$&tpd_max" > comp2_tb_timing_0.data
+.endc
+
+.GLOBAL 0
+.end

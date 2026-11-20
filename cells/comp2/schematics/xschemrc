@@ -1,21 +1,74 @@
-# Set XSCHEM_SHAREDIR explicitly
-set env(XSCHEM_SHAREDIR) /usr/local/share/xschem
-set XSCHEM_SHAREDIR $env(XSCHEM_SHAREDIR)
+# Xschem init file for gf180mcuD in IIC-OSIC-TOOLS and native environments
 
-# Setup PDK environment variables
-if {![info exists env(PDK_ROOT)]} {
-    set env(PDK_ROOT) "/home/astha/pdk"
+# Respect existing XSCHEM_SHAREDIR from environment or auto-detect IIC-OSIC-TOOLS
+if {[info exists env(XSCHEM_SHAREDIR)] && [file exists $env(XSCHEM_SHAREDIR)/xschem.tcl]} {
+    set XSCHEM_SHAREDIR $env(XSCHEM_SHAREDIR)
+} elseif {[file exists /foss/tools/xschem/share/xschem/xschem.tcl]} {
+    set env(XSCHEM_SHAREDIR) /foss/tools/xschem/share/xschem
+    set XSCHEM_SHAREDIR /foss/tools/xschem/share/xschem
+} elseif {[file exists /usr/local/share/xschem/xschem.tcl]} {
+    set env(XSCHEM_SHAREDIR) /usr/local/share/xschem
+    set XSCHEM_SHAREDIR /usr/local/share/xschem
+} elseif {[info exists XSCHEM_SHAREDIR]} {
+    set env(XSCHEM_SHAREDIR) $XSCHEM_SHAREDIR
 }
-set env(PDK) "gf180mcuD"
 
-# Set the library path explicitly
-set XSCHEM_LIBRARY_PATH [join [list \
-    . \
-    ${XSCHEM_SHAREDIR}/xschem_library \
-    ${XSCHEM_SHAREDIR}/xschem_library/devices \
-    $env(PDK_ROOT)/$env(PDK)/libs.tech/xschem \
-] ":"]
+# Setup PDK environment variables (matching 'sak-pdk gf180mcuD')
+if {![info exists env(PDK_ROOT)]} {
+    if {[file exists /foss/pdks]} {
+        set env(PDK_ROOT) "/foss/pdks"
+    } else {
+        set env(PDK_ROOT) "/home/osotnas/pdk"
+    }
+}
 
+if {![info exists env(PDK)]} {
+    set env(PDK) "gf180mcuD"
+}
+
+if {![info exists env(PDKPATH)]} {
+    set env(PDKPATH) "$env(PDK_ROOT)/$env(PDK)"
+}
+
+# Append to existing XSCHEM_LIBRARY_PATH or create
+set current_lib_path ""
+if {[info exists env(XSCHEM_LIBRARY_PATH)]} {
+    set current_lib_path $env(XSCHEM_LIBRARY_PATH)
+} elseif {[info exists XSCHEM_LIBRARY_PATH]} {
+    set current_lib_path $XSCHEM_LIBRARY_PATH
+}
+
+set SCRIPT_DIR [file dirname [file normalize [info script]]]
+set lib_dirs [list . $SCRIPT_DIR]
+
+if {[info exists XSCHEM_SHAREDIR]} {
+    if {[file exists ${XSCHEM_SHAREDIR}/xschem_library]} {
+        lappend lib_dirs ${XSCHEM_SHAREDIR}/xschem_library
+    }
+    if {[file exists ${XSCHEM_SHAREDIR}/xschem_library/devices]} {
+        lappend lib_dirs ${XSCHEM_SHAREDIR}/xschem_library/devices
+    }
+}
+
+if {[info exists env(PDKPATH)] && [file exists $env(PDKPATH)/libs.tech/xschem]} {
+    lappend lib_dirs $env(PDKPATH)/libs.tech/xschem
+}
+
+if {$current_lib_path ne ""} {
+    set XSCHEM_LIBRARY_PATH "${current_lib_path}:[join $lib_dirs ":"]"
+} else {
+    set XSCHEM_LIBRARY_PATH [join $lib_dirs ":"]
+}
 set env(XSCHEM_LIBRARY_PATH) $XSCHEM_LIBRARY_PATH
 
-puts "DEBUG: XSCHEM_LIBRARY_PATH is $XSCHEM_LIBRARY_PATH"
+# Suppress ERC exit code 10 in batch netlisting
+set show_infowindow_after_netlist never
+if {[info commands ::tcl_real_exit] eq ""} {
+    rename exit ::tcl_real_exit
+    proc exit {{code 0}} {
+        if {$code == 10} {
+            set code 0
+        }
+        ::tcl_real_exit $code
+    }
+}

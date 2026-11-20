@@ -1,0 +1,28 @@
+* CACE Power-Up Inrush Current Testbench
+.include $PDKPATH/libs.tech/ngspice/design.ngspice
+.lib $PDKPATH/libs.tech/ngspice/sm141064.ngspice {corner}
+
+.include {netlist}
+
+X1 VDD L A E G B VSS {cell_name}
+
+VPOWER VDD 0 PWL(0 0 1u {vdd} 2u {vdd})
+VGND VSS 0 DC 0
+VA A 0 DC 0
+VB B 0 DC 0
+
+CL L 0 50f
+CE E 0 50f
+CG G 0 50f
+
+.tran 20n 2u
+.control
+  run
+  let idd = -i(VPOWER)
+  meas tran i_inrush MAX idd from=0 to=2u
+  print i_inrush
+  echo "$&i_inrush" > comp2_tb_powerup_0.data
+.endc
+
+.GLOBAL 0
+.end

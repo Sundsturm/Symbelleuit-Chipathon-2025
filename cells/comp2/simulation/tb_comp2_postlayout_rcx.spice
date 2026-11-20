@@ -1,0 +1,59 @@
+* Post-layout (RCX Extracted with parasitics) Testbench for gf180mcu_gp9t3v3__comp2_1
+.include $PDKPATH/libs.tech/ngspice/design.ngspice
+.lib $PDKPATH/libs.tech/ngspice/sm141064.ngspice typical
+
+.include ../spice/rcx/gf180mcu_gp9t3v3__comp2_1.spice
+
+X1 VDD L A E G B VSS gf180mcu_gp9t3v3__comp2_1
+
+VPOWER VDD 0 DC 3.3
+VGND VSS 0 DC 0
+
+* Inputs cycling through truth table: (0,0) -> (1,0) -> (0,1) -> (1,1) -> (0,0)
+VA A 0 PWL(0 0 10n 0 10.1n 3.3 20n 3.3 20.1n 0 30n 0 30.1n 3.3 40n 3.3)
+VB B 0 PWL(0 0 20n 0 20.1n 3.3 40n 3.3)
+
+CL L 0 50f
+CE E 0 50f
+CG G 0 50f
+
+.tran 10p 40n
+.control
+  run
+  
+  * Peak Dynamic Current
+  let idd = -i(VPOWER)
+  meas tran i_peak MAX idd from=2n to=40n
+  meas tran i_avg AVG idd from=2n to=40n
+  
+  * Propagation Delays
+  meas tran tpd_G_LH trig v(A) val=1.65 rise=1 targ v(G) val=1.65 rise=1
+  meas tran tpd_G_HL trig v(A) val=1.65 fall=1 targ v(G) val=1.65 fall=1
+  meas tran tpd_L_LH trig v(B) val=1.65 rise=1 targ v(L) val=1.65 rise=1
+  meas tran tpd_L_HL trig v(A) val=1.65 rise=2 targ v(L) val=1.65 fall=1
+  meas tran tpd_E_HL trig v(A) val=1.65 rise=1 targ v(E) val=1.65 fall=1
+  meas tran tpd_E_LH trig v(A) val=1.65 rise=2 targ v(E) val=1.65 rise=1
+  
+  * Sample steady states for Truth Table
+  meas tran v_L_state00 FIND v(L) AT=5n
+  meas tran v_E_state00 FIND v(E) AT=5n
+  meas tran v_G_state00 FIND v(G) AT=5n
+  
+  meas tran v_L_state10 FIND v(L) AT=15n
+  meas tran v_E_state10 FIND v(E) AT=15n
+  meas tran v_G_state10 FIND v(G) AT=15n
+  
+  meas tran v_L_state01 FIND v(L) AT=25n
+  meas tran v_E_state01 FIND v(E) AT=25n
+  meas tran v_G_state01 FIND v(G) AT=25n
+  
+  meas tran v_L_state11 FIND v(L) AT=35n
+  meas tran v_E_state11 FIND v(E) AT=35n
+  meas tran v_G_state11 FIND v(G) AT=35n
+  
+  echo "--- POSTLAYOUT RCX RESULTS ---"
+  print i_peak i_avg tpd_G_LH tpd_G_HL tpd_L_LH tpd_L_HL tpd_E_HL tpd_E_LH
+.endc
+
+.GLOBAL 0
+.end

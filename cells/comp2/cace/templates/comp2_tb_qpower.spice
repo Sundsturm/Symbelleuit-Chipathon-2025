@@ -1,0 +1,28 @@
+* CACE Quiescent Static Power Dissipation Testbench
+.include $PDKPATH/libs.tech/ngspice/design.ngspice
+.lib $PDKPATH/libs.tech/ngspice/sm141064.ngspice {corner}
+
+.include {netlist}
+
+X1 VDD L A E G B VSS {cell_name}
+
+VPOWER VDD 0 DC {vdd}
+VGND VSS 0 DC 0
+VA A 0 DC 0
+VB B 0 DC 0
+
+CL L 0 50f
+CE E 0 50f
+CG G 0 50f
+
+.control
+  dc VA 0 {vdd} {vdd} VB 0 {vdd} {vdd}
+  let iddq = abs(i(VPOWER))
+  let iddq_max = vecmax(iddq)
+  let p_quiescent = iddq_max * {vdd}
+  print p_quiescent
+  echo "$&p_quiescent" > comp2_tb_qpower_0.data
+.endc
+
+.GLOBAL 0
+.end

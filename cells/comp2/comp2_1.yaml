@@ -1,11 +1,11 @@
 name: gf180mcu_gp9t3v3__comp2_1
-description: 1-bit Comparator 1x Drive
+description: 1-bit Magnitude Comparator 1x Drive
 PDK: gf180mcuD
 cace_format: 5.2
 
 authorship:
-  designer: "User"
-  company: "Symbelleuit"
+  designer: "Symbelleuit Team"
+  company: "Symbelleuit - Chipathon 2025"
   creation_date: "2025-11-22"
   license: "Apache 2.0"
 
@@ -15,34 +15,35 @@ paths:
   netlist: spice
   schematic: schematics
   layout: layout
+  testbench: cace
 
 pins:
   VDD:
-    description: Power supply
+    description: Power supply voltage (Nominal 3.3V)
     type: power
     direction: inout
   VSS:
-    description: Ground
+    description: Ground reference (0V)
     type: ground
     direction: inout
   A:
-    description: Input A
+    description: Digital input A
     type: signal
     direction: input
   B:
-    description: Input B
+    description: Digital input B
     type: signal
     direction: input
   L:
-    description: Output L (A < B)
+    description: Output Less Than (A < B)
     type: signal
     direction: output
   E:
-    description: Output E (A = B)
+    description: Output Equal (A == B)
     type: signal
     direction: output
   G:
-    description: Output G (A > B)
+    description: Output Greater Than (A > B)
     type: signal
     direction: output
 
@@ -53,16 +54,19 @@ default_conditions:
     unit: V
     typical: 3.3
   temperature:
-    description: Ambient temperature
+    description: Operating ambient temperature
     display: Temp
     unit: °C
     typical: 27
   corner:
-    description: Process corner
+    description: Process model corner
     display: Corner
     typical: typical
 
 parameters:
+  # -------------------------------------------------------------
+  # Physical Verification Parameters
+  # -------------------------------------------------------------
   magic_area:
     display: Area
     unit: µm²
@@ -75,3 +79,201 @@ parameters:
   magic_drc:
     display: DRC
     tool: magic_drc
+
+  # -------------------------------------------------------------
+  # Electrical Parameters (DC Power Supply Bench Sizing & Quiescent)
+  # -------------------------------------------------------------
+  quiescent_current:
+    display: Quiescent Current (I_Q / IDDQ)
+    description: Quiescent DC supply current in static states
+    unit: pA
+    spec:
+      i_quiescent:
+        typical:
+          value: 50.0
+        maximum:
+          value: 10000.0
+    conditions:
+      vdd:
+        typical: 3.3
+      corner:
+        typical: typical
+      temperature:
+        typical: 27
+    tool:
+      ngspice:
+        template: comp2_tb_iddq.sch
+        format: ascii
+        suffix: .data
+        variables: [i_quiescent]
+
+  quiescent_power:
+    display: Quiescent Power (P_Q)
+    description: Static power consumption in steady state
+    unit: pW
+    spec:
+      p_quiescent:
+        typical:
+          value: 165.0
+        maximum:
+          value: 33000.0
+    conditions:
+      vdd:
+        typical: 3.3
+      corner:
+        typical: typical
+      temperature:
+        typical: 27
+    tool:
+      ngspice:
+        template: comp2_tb_qpower.sch
+        format: ascii
+        suffix: .data
+        variables: [p_quiescent]
+
+  dynamic_peak_current:
+    display: Peak Switching Current
+    description: Peak dynamic switching supply current
+    unit: µA
+    spec:
+      i_peak:
+        typical:
+          value: 1500.0
+        maximum:
+          value: 5000.0
+    conditions:
+      vdd:
+        typical: 3.3
+      corner:
+        typical: typical
+      temperature:
+        typical: 27
+    tool:
+      ngspice:
+        template: comp2_tb_dynamic.sch
+        format: ascii
+        suffix: .data
+        variables: [i_peak]
+
+  dynamic_avg_power:
+    display: Dynamic Switching Power
+    description: Average dynamic power dissipation during continuous switching
+    unit: µW
+    spec:
+      p_dynamic:
+        typical:
+          value: 150.0
+        maximum:
+          value: 500.0
+    conditions:
+      vdd:
+        typical: 3.3
+      corner:
+        typical: typical
+      temperature:
+        typical: 27
+    tool:
+      ngspice:
+        template: comp2_tb_dynamic_power.sch
+        format: ascii
+        suffix: .data
+        variables: [p_dynamic]
+
+  powerup_inrush_current:
+    display: Power-Up Inrush Current
+    description: Peak current during power supply ramp
+    unit: µA
+    spec:
+      i_inrush:
+        typical:
+          value: 10.0
+        maximum:
+          value: 100.0
+    conditions:
+      vdd:
+        typical: 3.3
+      corner:
+        typical: typical
+      temperature:
+        typical: 27
+    tool:
+      ngspice:
+        template: comp2_tb_powerup.sch
+        format: ascii
+        suffix: .data
+        variables: [i_inrush]
+
+  # -------------------------------------------------------------
+  # Electrical Parameters (Signal Generator Bench Requirements)
+  # -------------------------------------------------------------
+  switching_threshold_vm:
+    display: Logic Switching Threshold (VM)
+    description: DC transfer switching midpoint threshold
+    unit: V
+    spec:
+      vm_G_sweepA:
+        minimum:
+          value: 1.30
+        typical:
+          value: 1.65
+        maximum:
+          value: 2.00
+    conditions:
+      vdd:
+        typical: 3.3
+      corner:
+        typical: typical
+      temperature:
+        typical: 27
+    tool:
+      ngspice:
+        template: comp2_tb_dc.sch
+        format: ascii
+        suffix: .data
+        variables: [vm_G_sweepA]
+
+  propagation_delay_max:
+    display: Max Propagation Delay (tpd)
+    description: Worst-case propagation delay across all paths
+    unit: ns
+    spec:
+      tpd_max:
+        typical:
+          value: 0.80
+        maximum:
+          value: 2.50
+    conditions:
+      vdd:
+        typical: 3.3
+      corner:
+        typical: typical
+      temperature:
+        typical: 27
+    tool:
+      ngspice:
+        template: comp2_tb_timing.sch
+        format: ascii
+        suffix: .data
+        variables: [tpd_max]
+
+  functional_logic_error:
+    display: Functional Truth-Table Error
+    description: Cumulative deviation from ideal logic levels
+    unit: mV
+    spec:
+      func_total_err:
+        maximum:
+          value: 100.0
+    conditions:
+      vdd:
+        typical: 3.3
+      corner:
+        typical: typical
+      temperature:
+        typical: 27
+    tool:
+      ngspice:
+        template: comp2_tb_func.sch
+        format: ascii
+        suffix: .data
+        variables: [func_total_err]

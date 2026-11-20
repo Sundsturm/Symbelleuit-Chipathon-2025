@@ -1,0 +1,53 @@
+* CACE Functional Truth-Table Error Testbench
+.include $PDKPATH/libs.tech/ngspice/design.ngspice
+.lib $PDKPATH/libs.tech/ngspice/sm141064.ngspice {corner}
+
+.include {netlist}
+
+X1 VDD L A E G B VSS {cell_name}
+
+VPOWER VDD 0 DC {vdd}
+VGND VSS 0 DC 0
+
+* Stimuli: Single-input transition sequence
+VA A 0 PWL(0 0 9.9n 0 10.1n {vdd} 19.9n {vdd} 20.1n 0 25n 0)
+VB B 0 PWL(0 0 4.9n 0 5.1n {vdd} 14.9n {vdd} 15.1n 0 25n 0)
+
+CL L 0 50f
+CE E 0 50f
+CG G 0 50f
+
+.tran 100p 25n
+.control
+  run
+  * State 00: A=0, B=0 -> L=0, E=3.3, G=0
+  meas tran v_L_00 FIND v(L) AT=2.5n
+  meas tran v_E_00 FIND v(E) AT=2.5n
+  meas tran v_G_00 FIND v(G) AT=2.5n
+
+  * State 01: A=0, B=1 -> L=3.3, E=0, G=0
+  meas tran v_L_01 FIND v(L) AT=7.5n
+  meas tran v_E_01 FIND v(E) AT=7.5n
+  meas tran v_G_01 FIND v(G) AT=7.5n
+
+  * State 11: A=1, B=1 -> L=0, E=3.3, G=0
+  meas tran v_L_11 FIND v(L) AT=12.5n
+  meas tran v_E_11 FIND v(E) AT=12.5n
+  meas tran v_G_11 FIND v(G) AT=12.5n
+
+  * State 10: A=1, B=0 -> L=0, E=0, G=3.3
+  meas tran v_L_10 FIND v(L) AT=17.5n
+  meas tran v_E_10 FIND v(E) AT=17.5n
+  meas tran v_G_10 FIND v(G) AT=17.5n
+
+  let err_00 = v_L_00 + abs(v_E_00 - {vdd}) + v_G_00
+  let err_01 = abs(v_L_01 - {vdd}) + v_E_01 + v_G_01
+  let err_11 = v_L_11 + abs(v_E_11 - {vdd}) + v_G_11
+  let err_10 = v_L_10 + v_E_10 + abs(v_G_10 - {vdd})
+  let func_total_err = err_00 + err_01 + err_11 + err_10
+  print func_total_err
+  echo "$&func_total_err" > comp2_tb_func_0.data
+.endc
+
+.GLOBAL 0
+.end
